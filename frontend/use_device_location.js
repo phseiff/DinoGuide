@@ -15,6 +15,7 @@ function handleDeviceLocationAccessError(error) {
     else if (error.code == error.UNKNOWN_ERROR)
         error_text = "Location request unsuccessful.";
     display_error_text("device_location_error_text", error_text);
+    _data.use_device_location = false;
 }
 
 function useDeviceLocation() {

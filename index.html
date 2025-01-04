@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>DinoGuide</title>
-  </head>
-  <body></body>
-</html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Learn what dinos to expect when and where when traveling back in time.">
-<meta name="theme-color" content="rgb(218, 202, 125)">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Learn what dinos to expect when and where when traveling back in time." />
+    <meta name="theme-color" content="rgb(218, 202, 125)" />
+    <title>DinoGuide</title>
+</head>
+
+
+<body>
 
 <script src="data/dinos.js"></script>
 <script src="data/places.js"></script>
@@ -23,6 +24,7 @@
 <script src="frontend/search_location.js"></script>
 <script src="frontend/time_selection.js"></script>
 <script src="frontend/search_dinosaurs.js"></script>
+<script src="frontend/switch_between_pages.js"></script>
 
 <link rel="stylesheet" href="style.css">
 
@@ -42,61 +44,6 @@
     </div>
 </div>
 
-<script>
-    function show_web_form() {
-        // This shortens the text displayed at the top of the page and adds the interface in its stead.
-        _data.showing_form = true;
-        document.getElementById("intro-text").innerHTML = document.querySelector("meta[name=description]").getAttribute("content");
-        document.getElementById("search-form").hidden = false;
-        document.getElementById("privacy").hidden = true;
-        document.getElementById("about").hidden = true;
-        document.getElementById("sources").hidden = true;
-    }
-    function hide_web_form() {
-        // This hides the web form and shows the info text instead.
-        _data.showing_form = false;
-        window.location.reload();
-    }
-    function show_privacy () {
-        document.getElementById("intro-text").hidden = true;
-        document.getElementById("search-form").hidden = true;
-        document.getElementById("privacy").hidden = false;
-        document.getElementById("about").hidden = true;
-        document.getElementById("sources").hidden = true;
-    }
-    function show_about() {
-        document.getElementById("intro-text").hidden = true;
-        document.getElementById("search-form").hidden = true;
-        document.getElementById("privacy").hidden = true;
-        document.getElementById("about").hidden = false;
-        document.getElementById("sources").hidden = true;
-    }
-    function show_sources() {
-        document.getElementById("intro-text").hidden = true;
-        document.getElementById("search-form").hidden = true;
-        document.getElementById("privacy").hidden = true;
-        document.getElementById("about").hidden = true;
-        document.getElementById("sources").hidden = false;
-    }
-    function chooseOption() {
-        var selected_value = document.getElementById("hamburger_menu").value;
-        if (selected_value == "options") {
-            return;
-        } else if (selected_value == "start_page") {
-            hide_web_form();
-        } else if (selected_value == "sources") {
-            show_sources();
-        } else if (selected_value == "about") {
-            show_about();
-        } else if (selected_value == "privacy") {
-            show_privacy();
-        }
-        document.getElementById("hamburger_menu").value = "options";
-    }
-</script>
-
-<body>
-
 <h1>DinoGuide</h1>
 
 <p id="intro-text">
@@ -114,23 +61,75 @@
 </p>
 
 <p id="privacy" hidden="true">
-    TODO: privacy & consent checkboxes
+    DinoGuide does not share any of your data with third parties without asking for and receiving consent beforehand.
+    The only third parties to which DinoGuide transmits data (with consent) are
+    <a rel='noopener noreferrer' target='_blank' href="openstreetmap.org">OpenStreetMap</a>
+    and
+    <a rel='noopener noreferrer' target='_blank' href="overpass-api.de">overpass-api.de</a>.
+    You can use the following checkbox to opt out of your consent, or opt in if you haven't given consent already:
+    <br><br>
+    <input type="checkbox" id="consent_to_osm" onclick="consentToOSM()">
+    <label for="consent_to_osm">Consent to OSM and overpass-api.de</label>
+    <span id="consent_to_osm_confirmation_message"></span>
     <br>
-    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
     <br>
 </p>
 
-<p id="about" hidden="true">
-    TODO: text about the website
+<span id="about" hidden="true">
+    Many people love dinosaurs and know a lot about them, but not many care about the different ecosystems they inhabited over the span of their reign.
+    The goal of this website is to inspire people to learn more about mesozoic ecology and to prompt them to think about the many
+    different ecosystems that dinosaurs inhabited, by letting them learn which groups of dinosaurs inhabited their home.
+    Ideally, it might prompt them to read a bit about different dinosaurs and think about how they might have interacted with each other.
+    <br><br>
+    The ideals that this website is build on are:
+    <ul>
+        <li>Accessibility (I tried to make this website friendly to screen reader users.)</li>
+        <li>Respecting the user's privacy (We use community-driven alternatives like OSM to data-hungry services like Google Maps.) and the GDPR</li>
+        <li>Being easy to use whilst still respecting the user's agency and their autonomy in knowing what they want.</li>
+        <li>Having lots of fun and loving dinosaurs!</li>
+    </ul>
+    I hope that I successfully balanced all of these aspects with each other and that you have a lot of fun on this website!
     <br>
-    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
     <br>
-</p>
+</span>
 
 <p id="sources" hidden="true">
-    TODO: Sources & proper credit
+    <strong>Dinosaur Data Sources:</strong>
+    <br><br>
+    The data on which Dinosaur was found where and lived from when to when comes from the English Wikipedia
+        (<a rel='noopener noreferrer' target='_blank' href="https://en.wikipedia.org/wiki/List_of_dinosaur_genera">See</a>
+        <a rel='noopener noreferrer' target='_blank' href="https://en.wikipedia.org/wiki/List_of_European_dinosaurs">also</a>)
+    and is therefore licensed under the
+    <a rel='noopener noreferrer' target='_blank' href="https://creativecommons.org/licenses/by-sa/4.0/">
+        Attribution-ShareAlike 4.0 International License
+    </a>. The link to the corresponding article is included in the data.
+    Information like the feeding habits of dinosaurs and the range that dinosaurs inhabited around
+    their fossil locations come from wikipedia, if they were present in the article, and have otherwise been added to the data
+    based on this pages author's judgement. For example, the article for
+    <a rel='noopener noreferrer' target='_blank' href="https://en.wikipedia.org/wiki/Alocodon">Alocodon kuehnei</a>
+    doesn't specify what the animal ate, but I deduced that it was probably herbivoric from the shape of the teeth
+    <a rel='noopener noreferrer' target='_blank' href="https://en.wikipedia.org/wiki/Alocodon#/media/File:Alocodon.jpg">teeth</a>
+    and categorized it as "herbivoric or omnivoric" (the omnivoric being due to the fact that the dinosaur's
+    position on the evolutionary tree is debated, which means that it might have been one of the rare omnivoric ornithopods).
+    <br><br>
+    It is therefore adviced that you do not use the information provided by DinoGuide as a wikipedia-replacement-source without
+    double-checking what wikipedia actually says and what was added by the authors to fill holes.
+    It is, of course, also adviced that you double-check everything that wikipedia says, due to the collaborative nature of its
+    writing.
+    <br><br>
+    <strong>Location Data Sources:</strong>
+    <br><br>
+    The data about locations, that DinoGuide uses behind the scenes for runtime optimizations, is taken from
+    <a rel='noopener noreferrer' target='_blank' href="https://openstreetmap.org/copyright">OpenStreetMap</a>
+    and therefore licensed under the 
+    <a rel='noopener noreferrer' target='_blank' href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0 license</a>.
+    The process of searching for locations in the location search box uses Nominatem, which is a wrapper around OpenStreetMap.
+    The process of checking which dinosaur's habitats include the user's location uses Overpass API, which is another wrapper
+    around OpenStreetMap.
     <br>
-    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
     <br>
 </p>
 
@@ -175,3 +174,4 @@
 <span id="dino_results"></span>
 
 </body>
+</html>

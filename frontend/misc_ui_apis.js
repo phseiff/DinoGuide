@@ -63,7 +63,7 @@ function display_error_text(id, error_html, color) {
     //  a more positive color, e.g. to indicate that something was successfull.
     if (error_html.endsWith("<br>")) {
         console.log("Error message: " + error_html + " ends with manually written <br>!");
-    } else {
+    } else if (error_html != "") {
         error_html += "<br>";
     }
     if (!color) {
@@ -93,9 +93,20 @@ function setLocation(location) {
 function userConsentsToThirdPartyServices() {
     if (!_data.consent_to_osm_usage) {
         _data.consent_to_osm_usage = confirm(
-"This and other functionalities of this site pass data to third-party location services\
+"This and other functionalities of this site pass data to third-party location services \
 like overpass-api.de, openstreetmap.org and nominatim.openstreetmap.org.\nIs that okay with you?"
         )
     }
+    document.getElementById("consent_to_osm").checked = _data.consent_to_osm_usage;
     return _data.consent_to_osm_usage;
+}
+
+function consentToOSM() {
+    _data.consent_to_osm_usage = document.getElementById("consent_to_osm").checked;
+    let options = ["revoked", "given"];
+    display_error_text("consent_to_osm_confirmation_message", (
+        "Consent " +
+        options[Number(_data.consent_to_osm_usage)] +
+        "."
+    ), "#68961f")
 }

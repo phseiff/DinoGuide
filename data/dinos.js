@@ -1,5 +1,5 @@
 
-var [INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMNIVORE] = [0, 1, 2, 4, 5];
+var [INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMNIVORE] = [1, 2, 3, 4, 5];
 
 var _continents = {
     ["South America"]: [
@@ -337,10 +337,36 @@ var _dinos = {
 
 // TODO: find a way to make it possible to read out the .lives w/ the _continents-entry-names still intact.
 
+// Round year_min and year_max to make them findable by searching for whole numbers
+
+function roundDinoLivingTime() {
+    for (const [dino_name, dino_entry] of Object.entries(_dinos)) {
+        let year_min = dino_entry.year_min;
+        let year_max = dino_entry.year_max;
+        let year_min_rounded = Math.floor(year_min);
+        let year_max_rounded = Math.ceil(year_max);
+        let range = year_max_rounded - year_min_rounded;
+        if (range == 1 && year_min_rounded < year_min && year_max_rounded > year_max) {
+            // both year_min and year_max are in between two adjacent whole numbers
+            if (year_min % 1 <= 0.5) {
+                dino_entry.year_min_precise = year_min;
+                dino_entry.year_min = year_min_rounded;
+            }
+            if (year_max % 1 >= 0.5) {
+                dino_entry.year_max_precise = year_max;
+                dino_entry.year_max = year_max_rounded;
+            }
+        }
+    }
+}
+
 // Error correction
 
 function errorCheckDinoData() {
     for (const [dino_name, dino_entry] of Object.entries(_dinos)) {
+        if (!dino_entry.eats) {
+            throw new Error(dino_name + " has no .eats value.");
+        }
         for (const [_, place_name] of Object.entries(dino_entry.lives)) {
             if (!_places[place_name]) {
                 throw new Error(dino_name + " has invalid place name " + place_name + " in .lives-attribute.");

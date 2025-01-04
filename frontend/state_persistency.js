@@ -21,10 +21,12 @@ function initialize_from_cookies() {
     }
     document.getElementById("time_as_text").value = _data.million_years_ago;
     document.getElementById("time_as_range").value = _data.million_years_ago;
+    document.getElementById("consent_to_osm").checked = _data.consent_to_osm_usage;
     update_time_as_name();
     // Initialize search
     _search_is_ready = true;
     build_places_tree(_places);
+    roundDinoLivingTime();
     errorCheckDinoData();
 }
 
