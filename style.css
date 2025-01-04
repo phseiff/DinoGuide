@@ -1,0 +1,121 @@
+:root {
+    --bg-color: rgb(247, 245, 235);
+    --bg-color-buttons: rgb(247, 238, 195);
+    --border-color: rgb(218, 202, 125);
+    --text-color: rgb(68, 64, 62);
+}
+
+* {
+    accent-color: var(--border-color);
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+.header {
+    margin-left: -9999rem;
+    padding-left: 9999rem;
+    padding-top: 17px;
+    padding-bottom: 7px;
+    height: 35px;
+    vertical-align: top;
+    background-color: var(--border-color);
+    width:100vw;
+    box-shadow: 12px 0px 14px black;
+    position: fixed;
+}
+
+body {
+    font-family: system-ui;
+    background-color: var(--bg-color);
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: var(--text-color);
+    padding: 0 10px;
+}
+@media only screen and (max-width: 660px) {
+    body {
+        padding-left: 12%;
+        padding-right: 13%;
+    }
+}
+
+button {
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 17px;
+    line-height: 24px;
+
+    white-space: nowrap;
+
+    background-color: var(--bg-color-buttons);
+    border-style: solid;
+    border-color: var(--border-color);
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+button#search_dinosaurs_button, button#search_dinosaurs_cancel_button, button#show_more {
+    line-height: 30px;
+    font-size: 20px;
+    margin-top: 15px;
+    /*margin-bottom: 40px;
+    float: left;*/
+}
+
+input[type="text"], select, input[type="number"] {
+    padding-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 17px;
+    line-height: 24px;
+
+    /*background-color: rgb(245, 232, 168);*/
+    border-style: solid;
+    border-color: var(--border-color);
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    margin-top: 5px;
+}
+
+button:disabled, select:disabled {
+    background-color: color-mix(in hsl, var(--bg-color), lightgray 30%);
+    border-color: color-mix(in hsl, var(--border-color), lightgray 45%);
+    color: color-mix(in hsl, var(--text-color), lightgray 30%);
+}
+
+button:hover:not(:disabled), select:hover:not(:disabled) {
+    background-color: var(--border-color);
+}
+
+@media only screen and (max-width: 600px) {
+    #time_as_range {
+        width: 100%;
+    }
+    #location_search_container {
+        flex-grow: 100;
+    }
+    #location_search_button_container {
+        flex-basis: auto,
+    }
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    line-height: 1.2;
+    margin-top: 100px;
+}

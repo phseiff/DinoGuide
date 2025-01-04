@@ -1,0 +1,148 @@
+// Dino Search
+var _times_that_search_has_run = 0;
+
+function search_dinosaurs_cancel() {
+    // This sets a parameter in the data that the "backend"'s code operates on that tells it to stop at the next iteration.
+    _search_data.cancel = true;
+}
+
+function search_dinosaurs() {
+    // This starts the search for dinosaurs that fits the parameters specified.
+
+    // check if user is okay with userdata being passed to Drittanbieter.
+    // (We do this check before giving them information like "no valid location entered" because
+    // we don't want a user to get the impression that we were somehow about to start the process
+    // without asking beforehand. )
+    if (!userConsentsToThirdPartyServices()) {
+        return;
+    }
+    // Check if location was entered:
+    if (_data.location_coordinates.latitude == undefined && _data.location_coordinates.display_name == undefined) {
+        display_error_text("dino_search_error_text", "No valid location entered.<br>");
+        return;
+    }
+    display_error_text("dino_search_error_text", "");
+    // remove outdated dino information:
+    if (_times_that_search_has_run > 0) {
+        clear_dinos_from_place_tree(_places);
+    }
+    _times_that_search_has_run += 1;
+    document.getElementById("dino_results").innerHTML = "";
+    // add dinos to places tree:
+    add_dinos_to_places_tree(_places, _dinos, _data.million_years_ago, _data.million_years_ago);
+    // lock interfaces:
+    lock_location_selection_functionalities("search_dinosaurs_button");
+    // do the actual search:
+    start_searching_dinosaurs_in_places_tree(_places, _data.location_coordinates);
+}
+
+function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
+    // Returns a piece of html that represents a list of the dinosaurs in dinosaur_names,
+    //  with added information like diet and time range.
+    let html = "";
+    let diet_to_emoji = {
+        [INSECTIVORE]: "🦗",
+        [CARNIVORE]: "🥩",
+        [HERBIVORE]: "🌲",
+        [OMNIVORE]: "🥩&🌲",
+        [HERBIVORE_OR_OMNIVORE]: "🌲 or 🥩&🌲"
+    };
+    let diet_to_mouseover = {
+        [INSECTIVORE]: "Insectivore",
+        [CARNIVORE]: "Carnivore",
+        [HERBIVORE]: "Herbivore",
+        [OMNIVORE]: "Omnivore",
+        [HERBIVORE_OR_OMNIVORE]: "Herbivore or Omnivore"
+    };
+    dinosaur_names = Array.from(dinosaur_names);
+    dinosaur_names.sort();
+    for (let i=0; i<dinosaur_names.length; i++) {
+        let name = dinosaur_names[i];
+        let year_min = _dinos[name].year_min_precise || _dinos[name].year_min;
+        let year_max = _dinos[name].year_max_precise || _dinos[name].year_max;
+        html += (
+            "<span name='dinosaurs:" + name + "'>" +
+            "<a rel='noopener noreferrer' target='_blank' href='" +
+            _dinos[name].wikipedia + "'>" + name + "</a> " +
+            "<small>(ate:&nbsp;<span title='" + diet_to_mouseover[_dinos[name].eats] +
+            "'>" + diet_to_emoji[_dinos[name].eats] + "</span>)</small><br>" +
+            (
+                _dinos[name].year_max == _dinos[name].year_min
+                ? ("<small>lived " + year_max)
+                : ("<small>lived from " + year_max + " to " + year_min)
+            ) +
+            " mil years ago</small><br>" +
+            (
+                show_locations
+                ? ("<small>lived in: " + _dinos[name].lives.join(", ") + "</small><br>")
+                : ""
+            ) +
+            "<br></span>"
+        );
+    }
+    return html;
+}
+
+function show_all_contemporaries() {
+    // Shows all dinosaurs that lived at a certain time, not just at the selected location.
+    let show_all_contemporaries_button = document.getElementById("show_all_contemporaries_button");
+    let outerHTML = "Dinosaurs that lived within your selected time span in other areas of the world:<br><br>"
+    outerHTML += generate_html_list_of_dinosaurs(_dinos_in_tree, true);
+    show_all_contemporaries_button.outerHTML = outerHTML;
+}
+
+function finish_search_dinosaurs(success) {
+    // This function is called by the "backend" when the search for dinosaurs that was started with search_dinosaurs is finished.
+    // It displays the results and/or appropriate error messages
+    if (success) {
+        display_error_text("dino_search_error_text", "");
+        dino_results = document.getElementById("dino_results");
+        innerHTML = "<hr>";
+        // No Dinos alive at the time
+        if (_dinos_in_tree.size + _search_data.dinos_found.size + _search_data.dinos_found_extended.size == 0) {
+            innerHTML += "No Dinosaurs (in DinoGuide's data set) are known to have lived at the time of the time you selected.";
+        // Dinos found
+        } else if (_search_data.dinos_found.size == 0) {
+            innerHTML += (
+                "No Dinosaurs are <i>known</i> to have lived at your selected time at your selected location.<br><br>" +
+                "This might be because: <ul>" +
+                    "<li>DinoGuide's data set is up-to-date with current knowledge.</li>" +
+                    "<li>Your location is on a tiny island that wasn't correctly processed by DinoGuide.</li>" +
+                    "<li>Your location <a rel='noopener noreferrer' target='_blank' href='https://en.wikipedia.org/wiki/Plate_tectonics'>was</a> in an ocean or on a secluded island during your selected time, where <a rel='noopener noreferrer' target='_blank' href='https://en.wikipedia.org/wiki/List_of_common_misconceptions#:~:text=" +
+                    encodeURIComponent('Despite their cultural depictions as "swimming dinosaurs"') + "," +
+                    encodeURIComponent('which excludes the pterosaurs.') +
+                    "'>no Dinosaurs</a> could have lived.</li>" +
+                    "<li>Potential other reasons why Dinosaurs didn't live at your location during your selected time.</li>" +
+                    "<li>Dinosaurs lived at your location during your selected time, but their fossils haven't been found.</li>" +
+                    "<li>Dinosaurs lived at your location during your selected time and their fossils have been found, but at a different location, and we didn't correctly deduce that their range included your location.</li>" +
+                "</ul><br><br>"
+            );
+        } else {
+            innerHTML += (
+                "The following Dinosaur species are <i>known</i> to have lived at your location during your selected time:<br><br>" +
+                generate_html_list_of_dinosaurs(_search_data.dinos_found)
+            );
+        }
+        // Dinos found extended
+        // (This feature is implemented, but not yet widely-used in the data set. See output strings below for context.)
+        if (_search_data.dinos_found_extended.size > 0) {
+            innerHTML += (
+                "The following Dinosaur species were connected to your location by land masses and thus <i>may</i> have lived at your location, but we can't know that for sure:<br><br>" +
+                generate_html_list_of_dinosaurs(_search_data.dinos_found_extended)
+            );
+        }
+        // Dinos that were not found, but lived at the time
+        if (_dinos_in_tree.size > 0) {
+            innerHTML += "<button id='show_all_contemporaries_button' type='button' onClick='show_all_contemporaries();'>Show all contemporary dinosaurs</button>";
+        }
+        dino_results.innerHTML = innerHTML;
+    } else {
+        display_error_text("dino_search_error_text", (
+            _search_data.cancel
+            ? "Canceled."
+            : "Dino search failed to complete due to API requests failing. This may be due to overloaded servers or due to internet connection problems.<br>"
+        ));
+    }
+    // unlock interfaces:
+    unlock_location_selection_functionalities();
+}

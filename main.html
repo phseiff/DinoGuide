@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DinoGuide</title>
+  </head>
+  <body></body>
+</html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Learn what dinos to expect when and where when traveling back in time.">
+<meta name="theme-color" content="rgb(218, 202, 125)">
+
+<script src="data/dinos.js"></script>
+<script src="data/places.js"></script>
+
+<script src="backend/structuring.js"></script>
+<script src="backend/search_dinosaurs.js"></script>
+
+<script src="frontend/state_persistency.js"></script>
+<script src="frontend/misc_ui_apis.js"></script>
+<script src="frontend/use_device_location.js"></script>
+<script src="frontend/search_location.js"></script>
+<script src="frontend/time_selection.js"></script>
+<script src="frontend/search_dinosaurs.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+<div class="header">
+    <!-- a href="javascript:hide_web_form();">DinoGuide</a-->
+    <div style="position: fixed; left: 40px; top: 17px;">
+        <small>powered by <a rel='noopener noreferrer' target='_blank' href="https://openstreetmap.org/copyright">OpenStreetMap.</a></small>
+    </div>
+    <div style="position: fixed; right: 20px; top: 17px;">
+        <select id="hamburger_menu" onchange="chooseOption()">
+            <option value="options">Options...</option>
+            <option value="start_page">Start Page</option>
+            <option value="sources">Sources</option>
+            <option value="about">About</option>
+            <option value="privacy">Privacy</option>
+        </select>
+    </div>
+</div>
+
+<script>
+    function show_web_form() {
+        // This shortens the text displayed at the top of the page and adds the interface in its stead.
+        _data.showing_form = true;
+        document.getElementById("intro-text").innerHTML = document.querySelector("meta[name=description]").getAttribute("content");
+        document.getElementById("search-form").hidden = false;
+        document.getElementById("privacy").hidden = true;
+        document.getElementById("about").hidden = true;
+        document.getElementById("sources").hidden = true;
+    }
+    function hide_web_form() {
+        // This hides the web form and shows the info text instead.
+        _data.showing_form = false;
+        window.location.reload();
+    }
+    function show_privacy () {
+        document.getElementById("intro-text").hidden = true;
+        document.getElementById("search-form").hidden = true;
+        document.getElementById("privacy").hidden = false;
+        document.getElementById("about").hidden = true;
+        document.getElementById("sources").hidden = true;
+    }
+    function show_about() {
+        document.getElementById("intro-text").hidden = true;
+        document.getElementById("search-form").hidden = true;
+        document.getElementById("privacy").hidden = true;
+        document.getElementById("about").hidden = false;
+        document.getElementById("sources").hidden = true;
+    }
+    function show_sources() {
+        document.getElementById("intro-text").hidden = true;
+        document.getElementById("search-form").hidden = true;
+        document.getElementById("privacy").hidden = true;
+        document.getElementById("about").hidden = true;
+        document.getElementById("sources").hidden = false;
+    }
+    function chooseOption() {
+        var selected_value = document.getElementById("hamburger_menu").value;
+        if (selected_value == "options") {
+            return;
+        } else if (selected_value == "start_page") {
+            hide_web_form();
+        } else if (selected_value == "sources") {
+            show_sources();
+        } else if (selected_value == "about") {
+            show_about();
+        } else if (selected_value == "privacy") {
+            show_privacy();
+        }
+        document.getElementById("hamburger_menu").value = "options";
+    }
+</script>
+
+<body>
+
+<h1>DinoGuide</h1>
+
+<p id="intro-text">
+    Imagine you were a time traveler about to travel 66 million years back in time, back to when dinosaurs ruled the earth.
+    Which dinosaurs would you actually meet at your location?
+    What if you traveled 160 million years back in time instead? Or 215 million?
+    What about other regions of the world? And which of the dinosaurs you might meet had meat, and therefore you, on the menu?
+    <br><br>
+    This educational website attempts to answer all of these questions.
+    <br><br>
+    (DinoGuide is currently in its alpha phase and therefore only lists european dinosaurs.)
+    <br>
+    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">Get Time Traveling</button>
+    <br>
+</p>
+
+<p id="privacy" hidden="true">
+    TODO: privacy & consent checkboxes
+    <br>
+    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <br>
+</p>
+
+<p id="about" hidden="true">
+    TODO: text about the website
+    <br>
+    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <br>
+</p>
+
+<p id="sources" hidden="true">
+    TODO: Sources & proper credit
+    <br>
+    <button id="show_more" type="button" style="float: inline-block" onclick="show_web_form();">&lt; Back</button>
+    <br>
+</p>
+
+<form id="search-form" hidden="true">
+    <label id="error_text"></label>
+
+    <label for="place"><strong>Where to travel:</strong></label><br>
+    <label id="place_name"></label>
+    <div style="display:flex; flex-wrap: nowrap; gap: 13px">
+        <div id="location_search_container">
+            <input type="text" id="place" name="place" style="width: 100%" onkeypress="locationSearchCheckEnter(event)">
+        </div>
+        <div id="location_search_button_container">
+            <button id="place_search_button" name="place_search_button" style="margin-left: 6px" type="button" onClick="searchLocation()">Search</button><br>
+        </div>
+    </div>
+    <span id="search_result_selection"></span>
+    <input type="checkbox" id="place_use_system_location" name="place_use_system_location" onclick="useDeviceLocation()">
+    <label for="place_use_system_location">Use device location</label><br>
+    <label id="device_location_error_text"></label>
+
+    <br>
+
+    <label for="time"><strong>What time to travel to:</strong></label><br>
+    <label id="time_as_name"></label>
+    <input type="number" id="time_as_text" name="time_as_text" min="66" max="252" value="66" oninput="on_time_change('time_as_text');">
+    <label for="time_as_text">million years ago</label><br>
+    <input type="range" id="time_as_range" name="time_as_range" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range');"><br>
+    <span hidden="true">
+    <input type="checkbox" id="use_system_time" name="use_system_time" onclick="use_device_time('')">
+    <label for="use_system_time">Use system time</label><br>
+    <label id="device_time_error_text"></label><br>
+    </span>
+
+    <br>
+
+    <button id="search_dinosaurs_button" type="button" onclick="search_dinosaurs();">Show Dinosaurs!</button>
+    <button hidden="true" id="search_dinosaurs_cancel_button" type="button" onclick="search_dinosaurs_cancel();">Cancel</button><br>
+    <label id="dino_search_error_text"></label>
+</form>
+
+<span id="dino_results"></span>
+
+</body>

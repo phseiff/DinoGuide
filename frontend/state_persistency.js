@@ -1,0 +1,46 @@
+// Function to load from cookies:
+function initialize_from_cookies() {
+    let name = "dino_guide_app_state=";
+    let result = document.cookie.split(name);
+    if (result.length >= 2) {
+        result = result[1].split(";")[0];
+        _data = JSON.parse(result);
+    }
+    // fill forms from _data:
+    if (_data.showing_form) {
+        show_web_form();
+    }
+    document.getElementById("place_use_system_location").checked = _data.use_device_location;
+    if (_data.use_device_location) {
+        useDeviceLocation();
+    }
+    document.getElementById("place_name").innerHTML = location_coords_JSON_to_string(_data.location_coordinates) + "<br>";
+    document.getElementById("use_system_time").checked = _data.use_device_time;
+    if (_data.use_device_time) {
+        use_device_time();
+    }
+    document.getElementById("time_as_text").value = _data.million_years_ago;
+    document.getElementById("time_as_range").value = _data.million_years_ago;
+    update_time_as_name();
+    // Initialize search
+    _search_is_ready = true;
+    build_places_tree(_places);
+    errorCheckDinoData();
+}
+
+// Function to save to cookies:
+window.addEventListener("beforeunload", function(event){
+    document.cookie = "dino_guide_app_state=" + JSON.stringify(_data) + "; expires=Tue, 19 Jan 2038 04:14:07 GMT";
+});
+
+document.addEventListener('DOMContentLoaded', initialize_from_cookies, false);
+
+// Default values for everything that we store as cookies:
+var _search_is_ready = false;
+var _data = {
+    use_device_location: false,
+    location_coordinates: {},
+    consent_to_osm_usage: false,
+    use_device_time: false,
+    million_years_ago: 66,
+}

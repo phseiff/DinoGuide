@@ -1,0 +1,9 @@
+This folder is called "backend" because the code it contains is data as well as
+functions for manipulating data and searching through it in efficient ways.
+It is therefore a twin to the "frontend" folder, which doesn't do any heavy
+operations on the data, but does a lot of things for displaying it.
+
+The website is, however, still a static website with no backend to it.
+The name "backend" for this folder was merely chosen to provide an
+easy-to-understand analogy to explain the duality between its contents
+and the contents of other folders.
