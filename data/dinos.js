@@ -39,7 +39,7 @@ var _continents = {
 }
 
 function fuse(l) {
-    // turns a lift of strings and lists of lists into a list of strings w/o duplicates in it
+    // turns a list of (strings and lists of strings) into a single list of strings w/o duplicates in it
     var l2 = [];
     for (var i=0; i<l.length; i++) {
         if (typeof l[i] == "object") {
