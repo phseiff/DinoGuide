@@ -16,19 +16,41 @@ var _places = {
     },
 
     // Europe:
-    /*
-    ["Peninsular Spain"]: {
-        // multiple ids means that we will form a union of them
-        // ("Peninsular Spain" isn't on OSM)
-        id: [349047, 349044, 349050, 349052, 349043, 349055, 348991, 349041, 349036, 349033, 6426101, 11107464, 349027, 349045, 349053],
-    },*/
-    // Germany
-    ["Germany"]: {
-        id: 51477,
+    // Belgium
+    ["Belgium"]: {
+        id: 52411,
+    },
+    // Britain:
+    ["Great Britain"]: {
+        id: 6038068,
+    },
+    ["England"]: {
+        id: 58447,
+        is_in: "Great Britain",
     },
     // France
     ["Metropolitan France"]: {
         id: 1403916,
+    },
+    // Germany
+    ["Germany"]: {
+        id: 51477,
+    },
+    ["Lower Saxony"]: {
+        id: 62771,
+        is_in: "Germany",
+    },
+    // Hungary
+    ["Hungary"]: {
+        id: 21335,
+    },
+    // Norway
+    ["Norway"]: {
+        id: 2978650,
+    },
+    // Portugal
+    ["Portugal"]: {
+        id: 295480,
     },
     // Spain
     ["Spain"]: {
@@ -89,6 +111,10 @@ var _places = {
     ["Valencia"]: {
         id: 349043,
         is_in: "Spain",
+    },
+    // Switzerland
+    ["Switzerland"]: {
+        id: 51701,
     },
 
     // South America:
@@ -164,15 +190,6 @@ var _places = {
         id: 114686,
     },
 
-    // Britain:
-    ["Great Britain"]: {
-        id: 6038068,
-    },
-    ["England"]:  {
-        id: 58447,
-        is_in: "Great Britain",
-    },
-    
     // USA:
     ["Canada"] : {
         id: 1428125,
