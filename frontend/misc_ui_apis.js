@@ -24,6 +24,7 @@ let ids_for_locking = [
     "place_use_system_location",
     "place_search_button",
     "search_dinosaurs_button",
+    "hamburger_menu",
     "location_search_results", // <- this one isn't necessarily present at all times
 ];
 
@@ -41,7 +42,6 @@ function lock_location_selection_functionalities(loading_icon_where) {
     document.getElementById(loading_icon_where).innerHTML += "⌛";
     if (loading_icon_where == "search_dinosaurs_button") {
         document.getElementById("search_dinosaurs_cancel_button").hidden = false;
-
     }
 }
 
