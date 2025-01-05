@@ -45,14 +45,22 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [CARNIVORE]: "🥩",
         [HERBIVORE]: "🌲",
         [OMNIVORE]: "🥩&🌲",
-        [HERBIVORE_OR_OMNIVORE]: "🌲 or 🥩&🌲"
+        [HERBIVORE_OR_OMNIVORE]: "🌲 or 🥩&🌲",
+        [INSECTIVORE_OR_CARNIVORE]: "🦗 and/or 🥩",
+        [PESCIVORE]: "🐟",
+        [PESCIVORE_AND_CARNIVORE]: "🐟🥩",
+        [PESCIVORE_OR_CARNIVORE]: "🐟 and/or 🥩",
     };
     let diet_to_mouseover = {
         [INSECTIVORE]: "Insectivore",
         [CARNIVORE]: "Carnivore",
         [HERBIVORE]: "Herbivore",
         [OMNIVORE]: "Omnivore",
-        [HERBIVORE_OR_OMNIVORE]: "Herbivore or Omnivore"
+        [HERBIVORE_OR_OMNIVORE]: "Herbivore or Omnivore",
+        [INSECTIVORE_OR_CARNIVORE]: "Insectivore and/or Carnivore",
+        [PESCIVORE]: "Pescivore",
+        [PESCIVORE_AND_CARNIVORE]: "Fish– and Meat-Eater", // <- this wording sounds less weird imo than "Pescivore and Carnivore"
+        [PESCIVORE_OR_CARNIVORE]: "Pescivore and/or Carnivore",
     };
     dinosaur_names = Array.from(dinosaur_names);
     dinosaur_names.sort();
