@@ -42,6 +42,7 @@ function onLocationSearchSuccess(responseText) {
         display_error_text("device_location_error_text", "No locations fitting the search term found.");
         return;
     }
+    display_error_text("device_location_error_text", "");
     // build data structure
     var results = [];
     for (var i=0; i<json_data.length; i+=1) {
