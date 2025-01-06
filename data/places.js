@@ -28,6 +28,22 @@ var _places = {
         id: 58447,
         is_in: "Great Britain",
     },
+    ["Wales"]: {
+        id: 58437,
+        is_in: "Great Britain",
+    },
+    // Croatia
+    ["Croatia"]: {
+        id: 214885,
+    },
+    // Czech Republic
+    ["Czechia"]: {
+        id: 51684,
+    },
+    // Denmark
+    ["Denmark"]: {
+        id: 50046,
+    },
     // France
     ["Metropolitan France"]: {
         id: 1403916,
@@ -44,6 +60,10 @@ var _places = {
     ["Hungary"]: {
         id: 21335,
     },
+    // Netherlands
+    ["Netherlands"]: {
+        id: 47796,
+    },
     // Norway
     ["Norway"]: {
         id: 2978650,
@@ -51,6 +71,10 @@ var _places = {
     // Portugal
     ["Portugal"]: {
         id: 295480,
+    },
+    // Romania
+    ["Romania"]: {
+        id: 90689,
     },
     // Spain
     ["Spain"]: {
