@@ -45,11 +45,11 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [CARNIVORE]: "🥩",
         [HERBIVORE]: "🌲",
         [OMNIVORE]: "🥩&🌲",
-        [HERBIVORE_OR_OMNIVORE]: "🌲 or 🥩&🌲",
-        [INSECTIVORE_OR_CARNIVORE]: "🦗 and/or 🥩",
+        [HERBIVORE_OR_OMNIVORE]: "🌲&nbsp;or&nbsp;🥩&🌲",
+        [INSECTIVORE_OR_CARNIVORE]: "🦗&nbsp;and/or&nbsp;🥩",
         [PESCIVORE]: "🐟",
         [PESCIVORE_AND_CARNIVORE]: "🐟🥩",
-        [PESCIVORE_OR_CARNIVORE]: "🐟 and/or 🥩",
+        [PESCIVORE_OR_CARNIVORE]: "🐟&nbsp;and/or&nbsp;🥩",
     };
     let diet_to_mouseover = {
         [INSECTIVORE]: "Insectivore",
