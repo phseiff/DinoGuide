@@ -66,3 +66,9 @@ function exit_side_page() {
     }
     // This entire function could be replaced with window.location.reload(), but that's less efficient than the show_web_form() call.
 }
+
+function exit_privacy_side_page() {
+    // empty confirmation text of privacy page when leaving it
+    display_error_text('consent_to_osm_confirmation_message', '');
+    exit_side_page();
+}

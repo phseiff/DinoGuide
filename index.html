@@ -24,6 +24,7 @@
     <script src="frontend/switch_between_pages.js"></script>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
 </head>
 
 
@@ -64,16 +65,15 @@
 <p id="privacy" hidden="true">
     DinoGuide does not share any of your data with third parties without asking for and receiving consent beforehand.
     The only third parties to which DinoGuide transmits data (with consent) are
-    <a rel='noopener noreferrer' target='_blank' href="openstreetmap.org">OpenStreetMap</a>
+    <a rel='noopener noreferrer' target='_blank' href="https://openstreetmap.org">OpenStreetMap</a>
     and
-    <a rel='noopener noreferrer' target='_blank' href="overpass-api.de">overpass-api.de</a>.
+    <a rel='noopener noreferrer' target='_blank' href="https://overpass-api.de">overpass-api.de</a>.
     You can use the following checkbox to opt out of your consent, or opt in if you haven't given consent already:
     <br><br>
     <input type="checkbox" id="consent_to_osm" onclick="consentToOSM()">
-    <label for="consent_to_osm">Consent to OSM and overpass-api.de</label>
+    <label for="consent_to_osm">Consent to OSM and overpass-api.de</label><br>
     <span id="consent_to_osm_confirmation_message"></span>
-    <br>
-    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
+    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_privacy_side_page()">&lt; Back</button>
     <br>
 </p>
 
