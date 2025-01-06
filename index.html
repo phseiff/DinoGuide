@@ -13,6 +13,7 @@
     <script src="data/places.js"></script>
     
     <script src="backend/structuring.js"></script>
+    <script src="backend/location_cache.js"></script>
     <script src="backend/search_dinosaurs.js"></script>
     
     <script src="frontend/state_persistency.js"></script>
@@ -73,7 +74,7 @@
     <input type="checkbox" id="consent_to_osm" onclick="consentToOSM()">
     <label for="consent_to_osm">Consent to OSM and overpass-api.de</label><br>
     <span id="consent_to_osm_confirmation_message"></span>
-    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_privacy_side_page()">&lt; Back</button>
+    <button class="return_to_main_page" type="button" style="float: inline-block" onclick="exit_privacy_side_page()">&lt; Back</button>
     <br>
 </p>
 
@@ -92,7 +93,7 @@
     </ul>
     I hope that I successfully balanced all of these aspects with each other and that you have a lot of fun on this website!
     <br>
-    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
+    <button class="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
     <br>
 </span>
 
@@ -130,7 +131,7 @@
     The process of checking which dinosaur's habitats include the user's location uses Overpass API, which is another wrapper
     around OpenStreetMap.
     <br>
-    <button id="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
+    <button class="return_to_main_page" type="button" style="float: inline-block" onclick="exit_side_page();">&lt; Back</button>
     <br>
 </p>
 

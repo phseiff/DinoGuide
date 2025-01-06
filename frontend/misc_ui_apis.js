@@ -86,6 +86,7 @@ function setLocation(location) {
         // location is a json object we created ourselves
         _data.location_coordinates = location;
     }
+    assign_user_place_cache_id(_data.location_coordinates);
     var location_as_string = location_coords_JSON_to_string(_data.location_coordinates);
     display_error_text("place_name", location_as_string, true);
     display_error_text("device_location_error_text", "");

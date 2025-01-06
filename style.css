@@ -63,7 +63,7 @@ button {
     border-width: 1px;
 }
 
-button#search_dinosaurs_button, button#search_dinosaurs_cancel_button, button#show_more, button#return_to_main_page {
+button#search_dinosaurs_button, button#search_dinosaurs_cancel_button, button#show_more, button.return_to_main_page {
     line-height: 30px;
     font-size: 20px;
     margin-top: 15px;
@@ -110,6 +110,9 @@ button:hover:not(:disabled), select:hover:not(:disabled) {
     }
     #location_search_button_container {
         flex-basis: auto,
+    }
+    select#location_search_results {
+        min-width: 100%;
     }
 }
 

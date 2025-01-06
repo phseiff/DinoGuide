@@ -17,6 +17,7 @@ function onLocationSelectionChoice() {
     }
     var [index, id] = selected_value.split(" ");
     index = Number(index);
+    id = Number(id);
     if (_location_dropdown_selection[index].id != id) {
         // having the id to check against saveguards us against problems
         //  caused by users clicking on an option whilst onLocationSearchSuccess
@@ -49,7 +50,8 @@ function onLocationSearchSuccess(responseText) {
         var result = {};
         results.push(result);
         result.display_name = "";
-        result.id = json_data[i].osm_id;
+        result.id = Number(json_data[i].osm_id);
+        // ^ should be a number already, but we're making double-sure bc we'll get hard to detect errors otherwise.
         result.place_id = json_data[i].place_id;
         result.is_relation = json_data[i].osm_type == "relation";
         if (!result.is_relation) {
