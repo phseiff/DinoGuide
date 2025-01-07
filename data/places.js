@@ -16,6 +16,10 @@ var _places = {
     },
 
     // Europe:
+    // Austria
+    ["Austria"]: {
+        id: 16239,
+    },
     // Belgium
     ["Belgium"]: {
         id: 52411,
