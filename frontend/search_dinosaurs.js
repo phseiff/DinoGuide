@@ -46,6 +46,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [HERBIVORE]: "🌲",
         [OMNIVORE]: "🥩&🌲",
         [HERBIVORE_OR_OMNIVORE]: "🌲&nbsp;or&nbsp;🥩&🌲",
+        [CARNIVORE_OR_OMNIVORE]: "🥩&nbsp;or&nbsp;🥩&🌲",
         [INSECTIVORE_OR_CARNIVORE]: "🦗&nbsp;and/or&nbsp;🥩",
         [PESCIVORE]: "🐟",
         [PESCIVORE_AND_CARNIVORE]: "🐟🥩",
@@ -57,6 +58,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [HERBIVORE]: "Herbivore",
         [OMNIVORE]: "Omnivore",
         [HERBIVORE_OR_OMNIVORE]: "Herbivore or Omnivore",
+        [CARNIVORE_OR_OMNIVORE]: "Carnivore or Omnivore",
         [INSECTIVORE_OR_CARNIVORE]: "Insectivore and/or Carnivore",
         [PESCIVORE]: "Pescivore",
         [PESCIVORE_AND_CARNIVORE]: "Fish– and Meat-Eater", // <- this wording sounds less weird imo than "Pescivore and Carnivore"
