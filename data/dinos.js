@@ -447,7 +447,7 @@ var _dinos = {
     ["Baryonyx walkeri"]: {
         year_max: 130,
         year_min: 125,
-        eats: CARNIVORE, // exclusively or non-exclusively piscivorous (fish-eating)
+        eats: PESCIVORE_AND_CARNIVORE, // found with fish scales in its stomach. also found with iguanodontid (baby iirc) in its stomach.
         lives: ["England"],
         lives_precise: ["Weald Clay"],
         wikipedia: "https://en.wikipedia.org/wiki/Baryonyx",
@@ -575,7 +575,7 @@ var _dinos = {
     ["Ceratosuchops inferodios"]: {
         year_max: 128,
         year_min: 128,
-        eats: CARNIVORE, // spinosaurids were at least partially piscivorous (fish-eating)
+        eats: PESCIVORE_OR_CARNIVORE, // spinosaurids were at least partially piscivorous (fish-eating)
         lives: ["England"],
         lives_precise: ["Wessex Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Ceratosuchops",
@@ -729,7 +729,7 @@ var _dinos = {
     ["Dromaeosauroides bornholmensis"]: {
         year_max: 140,
         year_min: 140,
-        eats: CARNIVORE, // Coprolites containing fish remains found in the Jydegaard Formation may belong to Dromaeosauroides.
+        eats: PESCIVORE_OR_CARNIVORE, // Coprolites containing fish remains found in the Jydegaard Formation may belong to Dromaeosauroides.
         lives: ["Denmark"],
         lives_precise: ["Jydegaard Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Dromaeosauroides",
@@ -1411,7 +1411,7 @@ var _dinos = {
     ["Poekilopleuron bucklandii"]: {
         year_max: 167.7,
         year_min: 166.1,
-        eats: CARNIVORE, // potentially found near fish remains
+        eats: CARNIVORE, // potentially found near fish remains, but wikipedia's source for that (http://lesdinos.free.fr/D2005.pdf) is unclear on that iirc.
         lives: ["Metropolitan France"],
         lives_precise: ["Calcaire de Caen"],
         wikipedia: "https://en.wikipedia.org/wiki/Poekilopleuron",
