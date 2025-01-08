@@ -8,7 +8,32 @@ assignment for university).
 
 The guidelines below differ marginally from the guidelines outlined in the comments inside the code, because the comments describe the status quo and the guidelines express the intended way to handle this project going forward.
 
+## General attitudes
+
+The following considerations underlie all of the procedures detailed throughout this doument:
+
+Best practice:
+* Base information inside _dinos on peer-reviewed scientific sources.
+* This requires naming the source in a comment.
+
+Okay practice (done for matter of convenience):
+* Base information inside _dinos on wikipedia
+* This does not require naming the source in a comment since the source is already in the .wikipedia-attribute.
+* If wikipedia clashes with scientific sources, these sources take precedence.
+
+Necessary practice (done to fill holes):
+* Base information on semi-educated guesses by the contributor
+* Necessary if wikipedia has no information or contains questionable information with no source, and finding a study is out of scope
+* May never take precedence over peer-reviewed scientific sources or source-backed wikipedia information, if those are available
+* Only permitted because adding information based on amateur knowledge is better for the functionality of the site than having it not be usable
+* Needs to be noted in a comment!!
+
+The sources page on the website already tells the user to double-check all information provided by the website before using it for scientific purposes,
+so this approach should be okay.
+
 ## Adding to the _dinos object
+
+! Keep in mind that wikipedia articles usually handle entire genuses, which may include separate species with different "stats".
 
 ### The key:
 
