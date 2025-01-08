@@ -1,4 +1,47 @@
 
+/*
+Every entry in _places has the following attributes:
+
+Mandatory:
+* id: The OSM id.
+
+Optional:
+* area_group: Every place belongs into one area group. Two places that are in the same area group may be wholle
+              separate from each other (no overlap or intersection), or one of them may be completely contained
+              within the other, but they may not partially intersect. The area_group attribute takes a string
+              value that states which area group it belongs into; if no area group is specified, the place is
+              assigned the area group "government_borders", which contains countries and municipalities of countries
+              (except for countries that are in border disputes with one another, who get their own groups).
+              The purpose of area groups is that the no-partial-intersections rule gives the search_dinosaurs.js code
+              guarantees that can be used for oprimizations.
+* is_in: The name (index of _places) of the (or a) country or area that the place is in. Used for optimizations.
+
+Automatically generated via code:
+* contains:   _places[foobar].contains is a name-to-object mapping of places, similar to _places, but only containing
+              the places whose is_in attribute is foobar. It points to the same objects (rather than copies of them) as
+              _places.
+The following attributes are cleared and re-generated for every dino search based on the timespan selected:
+* lives:      A set containing the names (keys of _dinos) of dinosaurs that lived during the selected timespan in the
+              entirety (not just sub-places!) of the place, according to the dinosaur's lives-attribute.
+* lives_extended:
+              Same as `lives`, but based on the dinosaurs' `lives_extended`-attributes rather than their `lives`-
+              attributes.
+* lives_in_children:
+              Like the `lives` attribute, but it only counts dinosaurs that lived in children, grandchildren etc (as
+              defined by the is_in attributes) of the place, rather than the place itself.
+* lives_extended_in_children:
+              Like the `lives_in_children` attribute, but for `lives_extended` rather than `lives`.
+* has_dinosaurs:
+              true: Means that the place has dinosaurs in its lives*-attributes that have not yet been found to have
+                    lived at the user-selected search location.
+              false: Means the negation of true.
+              This attribute may never have false negatives, but may have temporary false positives during the search
+              process.
+* has_user_location:
+              true: Means that the user-selected search location is either within this place, or intersects with it.
+              false: Means the negation of true.
+              This attribute starts off as false, but may get set to true during the search to avoid duplicate checks.
+*/
 
 var _places = {
     // Africa:
@@ -250,3 +293,7 @@ var _places = {
         is_in: "USA",
     },
 }
+
+// A mapping from IDs to area group names.
+
+_area_groups_by_id = {};

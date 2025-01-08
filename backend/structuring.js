@@ -3,6 +3,7 @@
 function build_places_tree(_places) {
     for (let key in _places) {
         let place_entry = _places[key];
+        _area_groups_by_id[place_entry.id] = place_entry.area_group || "government_borders";
         if (place_entry.is_in) {
             let parent = _places[place_entry.is_in];
             if (!parent.contains) {
