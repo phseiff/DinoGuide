@@ -1,6 +1,7 @@
 
-var [INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMNIVORE, CARNIVORE_OR_OMNIVORE,
-    INSECTIVORE_OR_CARNIVORE, PISCIVORE, PISCIVORE_AND_CARNIVORE, PISCIVORE_OR_CARNIVORE] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var [UNKNOWN_DIET, INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMNIVORE, CARNIVORE_OR_OMNIVORE,
+    INSECTIVORE_OR_CARNIVORE, PISCIVORE, PISCIVORE_AND_CARNIVORE, PISCIVORE_OR_CARNIVORE] = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 var _continents = {
     ["South America"]: [
@@ -57,6 +58,16 @@ function fuse(l) {
 }
 
 var _dinos = {
+    /* template:
+    ["species"]: {
+        year_max: ,
+        year_min: ,
+        eats: UNKNOWN_DIET INSECTIVORE CARNIVORE HERBIVORE OMNIVORE HERBIVORE_OR_OMNIVORE CARNIVORE_OR_OMNIVORE INSECTIVORE_OR_CARNIVORE PISCIVORE PISCIVORE_AND_CARNIVORE PISCIVORE_OR_CARNIVORE,
+        lives: ["Germany"] _continents["Peninsular Spain"],
+        lives_precise: [""], // optional
+        wikipedia: "",
+    },
+    */
     ["Aardonyx celestae"]: {
         year_max: 201.3, // which year is max and which is min is based on the absolute value of the year.
         year_min: 190.8, // ofc the year value is in millions of years.
@@ -387,6 +398,30 @@ var _dinos = {
         lives: _continents["Peninsular Spain"],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Aragosaurus",
+    },
+    ["Archaeopteryx albersdoerferi"]: {
+        year_max: 150.8,
+        year_min: 148.5,
+        eats: CARNIVORE,
+        lives: ["Germany"],
+        lives_precise: ["Mörnsheim Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Archaeopteryx",
+    },
+    ["Archaeopteryx lithographica"]: { // type species
+        year_max: 150.8,
+        year_min: 148.5,
+        eats: CARNIVORE,
+        lives: ["Germany"],
+        lives_precise: ["Solnhofen Limestone"],
+        wikipedia: "https://en.wikipedia.org/wiki/Archaeopteryx",
+    },
+    ["Archaeopteryx siemensii"]: {
+        year_max: 150.8,
+        year_min: 148.5,
+        eats: CARNIVORE,
+        lives: ["Germany"],
+        lives_precise: ["Solnhofen Limestone"],
+        wikipedia: "https://en.wikipedia.org/wiki/Archaeopteryx",
     },
     ["Arcovenator escotae"]: {
         year_max: 76,
@@ -1569,17 +1604,38 @@ var _dinos = {
         lives_precise: ["Oxford Clay"],
         wikipedia: "https://en.wikipedia.org/wiki/Sarcolestes",
     },
-    // only Germany-flagged dinosaurs below this line
-    /* template:
-    ["species"]: {
-        year_max: ,
-        year_min: ,
-        eats: INSECTIVORE CARNIVORE HERBIVORE OMNIVORE HERBIVORE_OR_OMNIVORE CARNIVORE_OR_OMNIVORE INSECTIVORE_OR_CARNIVORE PISCIVORE PISCIVORE_AND_CARNIVORE PISCIVORE_OR_CARNIVORE,
-        lives: ["Germany"] _continents["Peninsular Spain"],
-        lives_precise: [""], // optional
-        wikipedia: "",
+    ["Sarcosaurus woodi"]: {
+        year_max: 200,
+        year_min: 194,
+        eats: CARNIVORE,
+        lives: ["England"],
+        lives_precise: ["Scunthorpe Mudstone"],
+        wikipedia: "https://en.wikipedia.org/wiki/Sarcosaurus",
     },
-    */
+    ["Scelidosaurus harrisonii"]: {
+        year_max: 196.5,
+        year_min: 183,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Charmouth Mudstone Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Scelidosaurus",
+    },
+    ["Schleitheimia schutzi"]: {
+        year_max: 222,
+        year_min: 209,
+        eats: HERBIVORE,
+        lives: ["Switzerland"],
+        lives_precise: ["Klettgau Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Schleitheimia",
+    },
+    ["Scipionyx samniticus"]: {
+        year_max: 113,
+        year_min: 113,
+        eats: PISCIVORE_AND_CARNIVORE,
+        lives: ["Italy"],
+        lives_precise: ["Pietraroja Plattenkalk"],
+        wikipedia: "https://en.wikipedia.org/wiki/Scipionyx",
+    },
     ["Sciurumimus albersdoerferi"]: {
         year_max: 150,
         year_min: 150,
@@ -1587,6 +1643,14 @@ var _dinos = {
         lives: ["Germany"],
         lives_precise: ["Torleite Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Sciurumimus",
+    },
+    ["Soriatitan golmayensis"]: {
+        year_max: 138,
+        year_min: 130,
+        eats: HERBIVORE,
+        lives: _continents["Peninsular Spain"],
+        lives_precise: ["Golmayo Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Soriatitan",
     },
     ["Stenopelix valdensis"]: {
         year_max: 140,
@@ -1596,7 +1660,105 @@ var _dinos = {
         lives_precise: ["Obernkirchen Sandstein Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Stenopelix",
     },
+    ["Streptospondylus altdorfensis"]: {
+        year_max: 161,
+        year_min: 161,
+        eats: CARNIVORE,
+        lives: ["Metropolitan France"],
+        lives_precise: ["Marnes de Dives or Marnes de Villers"],
+        wikipedia: "https://en.wikipedia.org/wiki/Streptospondylus",
+    },
+    ["Struthiosaurus austriacus"]: {
+        year_max: 85,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Austria"],
+        lives_precise: ["Gosau Group"],
+        wikipedia: "https://en.wikipedia.org/wiki/Struthiosaurus",
+    },
+    ["Struthiosaurus transylvanicus"]: {
+        year_max: 85,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Romania"],
+        lives_precise: ["Sânpetru Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Struthiosaurus",
+    },
+    ["Struthiosaurus languedocensis"]: {
+        year_max: 85,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Metropolitan France"],
+        lives_precise: ["Argiles et Grès à Reptiles Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Struthiosaurus",
+    },
+    ["Syngonosaurus macrocercus"]: {
+        year_max: 105,
+        year_min: 100,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Cambridge Greensand"],
+        wikipedia: "https://en.wikipedia.org/wiki/Syngonosaurus",
+    },
+    ["Tamarro insperatus"]: {
+        year_max: 66.1,
+        year_min: 66,
+        eats: CARNIVORE_OR_OMNIVORE,
+        lives: _continents["Peninsular Spain"],
+        lives_precise: ["Tremp Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Tamarro",
+    },
     // Tanystrosuchus: dubious genus
+    ["Tarascosaurus salluvicus"]: {
+        year_max: 80,
+        year_min: 70,
+        eats: CARNIVORE,
+        lives: ["Metropolitan France"],
+        lives_precise: ["Fuvelian Beds"],
+        wikipedia: "https://en.wikipedia.org/wiki/Tarascosaurus",
+    },
+    ["Tastavinsaurus sanzi"]: {
+        year_max: 125,
+        year_min: 125,
+        eats: HERBIVORE,
+        lives: _continents["Peninsular Spain"],
+        lives_precise: ["Forcall Formation", "Xert Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Tastavinsaurus",
+    },
+    ["Teinurosaurus sauvagei"]: {
+        year_max: 149.2, // Late Jurassic, Tithonian
+        year_min: 143.1,
+        eats: CARNIVORE,
+        lives: ["Metropolitan France"],
+        lives_precise: ["Mont-Lambert Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Teinurosaurus",
+    },
+    ["Telmatosaurus transsylvanicus"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Romania"],
+        lives_precise: ["Sânpetru Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Telmatosaurus",
+    },
+    ["Tethyshadros insularis"]: {
+        year_max: 81.5,
+        year_min: 80.5,
+        eats: HERBIVORE,
+        lives: ["Italy"],
+        lives_precise: ["Calcare di Aurisina"],
+        wikipedia: "https://en.wikipedia.org/wiki/Tethyshadros",
+    },
+    // Thecocoelurus daviesi: dubious genus
+    ["Thecodontosaurus antiquus"]: {
+        year_max: 234,
+        year_min: 234,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Magnesian Conglomerate"],
+        wikipedia: "https://en.wikipedia.org/wiki/Thecodontosaurus",
+    },
+    // Thecospondylus horneri: dubious genus
     ["Torvosaurus tanneri"]: {
         year_max: 165,
         year_min: 148,
@@ -1621,6 +1783,22 @@ var _dinos = {
         lives_precise: ["Ornatenton Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Torvosaurus",
     },
+    ["Transylvanosaurus platycephalus"]: {
+        year_max: 72.1, // Late Cretaceous, Maastrichtian
+        year_min: 66.0,
+        eats: HERBIVORE,
+        lives: ["Romania"],
+        lives_precise: ["Pui Beds"],
+        wikipedia: "https://en.wikipedia.org/wiki/Transylvanosaurus",
+    },
+    ["Trimucrodon cuneatus"]: {
+        year_max: 154.8, // Late Jurassic, Kimmeridgian
+        year_min: 149.2,
+        eats: HERBIVORE,
+        lives: ["Portugal"],
+        lives_precise: ["Lourinhã Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Trimucrodon",
+    },
     ["Tuebingosaurus maierfritzorum"]: {
         year_max: 222,
         year_min: 209,
@@ -1628,6 +1806,87 @@ var _dinos = {
         lives: ["Germany"],
         lives_precise: ["Trossingen Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Tuebingosaurus",
+    },
+    ["Turiasaurus riodevensis"]: {
+        year_max: 155,
+        year_min: 146,
+        eats: HERBIVORE,
+        lives: _continents["Peninsular Spain"],
+        lives_precise: ["Villar del Arzobispo Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Turiasaurus",
+    },
+    ["Valdosaurus canaliculatus"]: {
+        year_max: 140,
+        year_min: 121,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Weald Clay", "Wealden Group", "Wessex Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Valdosaurus",
+    },
+    ["Vallibonavenatrix cani"]: {
+        year_max: 129.4,
+        year_min: 125,
+        eats: PISCIVORE_OR_CARNIVORE,
+        lives: _continents["Peninsular Spain"],
+        lives_precise: ["Arcillas de Morella Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vallibonavenatrix",
+    },
+    // Variraptor mechinorum: dubious and potentially chimaeric genus
+    ["Vectaerovenator inopinatus"]: {
+        year_max: 116,
+        year_min: 116,
+        eats: CARNIVORE,
+        lives: ["England"],
+        lives_precise: ["Lower Greensand Group"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vectaerovenator",
+    },
+    ["Vectidromeus insularis"]: {
+        year_max: 125.77, // Early Cretaceous, Barremian
+        year_min: 121.4,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Wessex Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vectidromeus",
+    },
+    ["Vectipelta barretti"]: {
+        year_max: 132.6, // Early Cretaceous, Hauterivian–Barremian
+        year_min: 121.4,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Wessex Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vectipelta",
+    },
+    ["Vectiraptor greeni"]: {
+        year_max: 125,
+        year_min: 125,
+        eats: CARNIVORE,
+        lives: ["England"],
+        lives_precise: ["Wessex Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vectiraptor",
+    },
+    ["Velocipes guerichi"]: {
+        year_max: 221.5,
+        year_min: 205.6,
+        eats: CARNIVORE,
+        lives: ["Poland"],
+        lives_precise: ["Lissauer Breccia"],
+        wikipedia: "https://en.wikipedia.org/wiki/Velocipes",
+    },
+    ["Volgatitan simbirskiensis"]: {
+        year_max: 132.6, // Early Cretaceous, Hauterivian 
+        year_min: 125.77,
+        eats: HERBIVORE,
+        lives: ["Russia"],
+        lives_precise: ["Unnamed formation in Ulyanovsk Oblast"],
+        wikipedia: "https://en.wikipedia.org/wiki/Volgatitan",
+    },
+    ["Vouivria damparisensis"]: {
+        year_max: 160,
+        year_min: 160,
+        eats: HERBIVORE,
+        lives: ["Metropolitan France"],
+        lives_precise: ["Calcaires de Clerval"],
+        wikipedia: "https://en.wikipedia.org/wiki/Vouivria",
     },
     ["Wiehenvenator albati"]: {
         year_max: 166,
@@ -1637,38 +1896,46 @@ var _dinos = {
         lives_precise: ["Ornatenton Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Wiehenvenator",
     },
-    /*
-    lives: fuse([_continents["Peninsular Spain"], "Portugal"]),
-        This is the area that the animal is known to have lived in, based on where it was found.
-        This might be the exact location where it was found, or a wider area based on multiple finds,
-        but it attempts to be a conservative estimate.
-        We attempt not to undershoot the area (e.g. if the fossils are known from only one location
-        that happens to be known for exceptionally good fossil preservation, we will assume a wider
-        distribution than just this one place), but also attempt not to overshoot the location (i.e.
-        we won't assume that an animal found in only one location lived in every place that was
-        connected to that place by land).
-        This list HAS to contain only places that exist in the _places table. Things like rock formations
-        that are not present on OSM (and therefore not in the _places table either) can not be in the
-        `lives` list.
-        The `lives` list HAS to be present for every entry.
-    lives_precise:
-        An optional list similar to `lives` that is more restricted to the actual area where the fossil was found.
-        This might be the name of the relevant rock formations, or the name of individual US states tha fossils were
-        found in if the genum was found in multiple US states.
-        In cases where the `lives` list contains a value judgement that assumes a wider area than what can be derived
-        from fossil found locations, the `lives_precise` list HAS to be defined.
-        Otherwise, it does not have to be present, but CAN be present.
-        The entries in the `lives_precise`-list CAN be present in the _places table, but don't have to be.
-    lives_extended:
-        Planned feature that might not make it into the final product.
-        This list reflects the places that the animal could have reached by foot, at the time that it lived,
-        without swimming, if it started its journey at locations where its fossils were found.
-        If there are specific reasons to assume that the animal did not leave certain regions (e.g. we know many fossils
-        from different fossil sites all over southern Gondwana, but not over northern Gondwana), then these reasons
-        override the approach escribed above.
-        The `lives_extended`-list is intended to be a maximum realistic estimate of where the animal could have lived.
-        The entries in the `lives_extended`-list HAVE to be present in the _places table.
-        The `lives_extended`-list is optional.
+    ["Xenoposeidon proneneukos"]: {
+        year_max: 140,
+        year_min: 140,
+        eats: HERBIVORE,
+        lives: ["England"],
+        lives_precise: ["Wealden Group"],
+        wikipedia: "https://en.wikipedia.org/wiki/Xenoposeidon",
+    },
+    ["Yaverlandia bitholus"]: {
+        year_max: 125,
+        year_min: 125,
+        eats: UNKNOWN_DIET,
+        lives: ["England"],
+        lives_precise: ["Vectis Formation or Wessex Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Yaverlandia",
+    },
+    ["Zalmoxes robustus"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Romania"],
+        lives_precise: ["Densuş-Ciula Formation", "Sânpetru Formation", "Sebeş Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Zalmoxes",
+    },
+    ["Zalmoxes shqiperorum"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Romania"],
+        lives_precise: ["Densuş-Ciula Formation", "Sânpetru Formation", "Sebeş Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Zalmoxes",
+    },
+    ["Zby atlanticus"]: {
+        year_max: 154.8, // Upper Jurassic, Kimmeridgian
+        year_min: 149.2,
+        eats: HERBIVORE,
+        lives: ["Portugal"],
+        lives_precise: ["Lourinhã Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Zby",
+    },
     */
 }
 

@@ -121,6 +121,10 @@ var _places = {
     ["Norway"]: {
         id: 2978650,
     },
+    // Poland
+    ["Poland"]: {
+        id: 49715,
+    },
     // Portugal
     ["Portugal"]: {
         id: 295480,
@@ -264,6 +268,9 @@ var _places = {
     },
     ["Mongolia"]: {
         id: 161033,
+    },
+    ["Russia"]: {
+        id: 60189,
     },
 
     // North America:
