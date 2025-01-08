@@ -119,14 +119,14 @@ function search_dinosaurs_in_place(place_entry, coordinates, _places) {
             return true;
         }
     
-        // If our location is different (by ID) from the dinosaur location, in the same area group and not a
-        // descendent, then we can conclude that there is no intersection between both:
+        // If our location is different (by ID) from the dinosaur location and its parents, and in the same area group
+        // then we can conclude that there is an intersection between both if and only if our location is a descendant
+        // of the dinosaur location.
         else if (
             _area_groups_by_id[coordinates.id]
             && _area_groups_by_id[coordinates.id] == _area_groups_by_id[place_entry.id]
-            && !(place_entry.descendents.has(coordinates.id))
         ) {
-            mark_place_entry_hit(false);
+            mark_place_entry_hit(place_entry.descendents.has(coordinates.id));
             window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
             return true;
         }
