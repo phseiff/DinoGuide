@@ -41,6 +41,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
     //  with added information like diet and time range.
     let html = "";
     let diet_to_emoji = {
+        [UNKNOWN_DIET]: "🥩 and/or 🌲?",
         [INSECTIVORE]: "🦗",
         [CARNIVORE]: "🥩",
         [HERBIVORE]: "🌲",
@@ -53,6 +54,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [PISCIVORE_OR_CARNIVORE]: "🐟 and/or 🥩",
     };
     let diet_to_mouseover = {
+        [UNKNOWN_DIET]: "Unknown diet",
         [INSECTIVORE]: "Insectivore",
         [CARNIVORE]: "Carnivore",
         [HERBIVORE]: "Herbivore",
