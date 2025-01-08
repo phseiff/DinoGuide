@@ -1,6 +1,6 @@
 
 var [INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMNIVORE, CARNIVORE_OR_OMNIVORE,
-    INSECTIVORE_OR_CARNIVORE, PESCIVORE, PESCIVORE_AND_CARNIVORE, PESCIVORE_OR_CARNIVORE] = [1, 2, 3, 4, 5, 6, 7, 8, , 10];
+    INSECTIVORE_OR_CARNIVORE, PISCIVORE, PISCIVORE_AND_CARNIVORE, PISCIVORE_OR_CARNIVORE] = [1, 2, 3, 4, 5, 6, 7, 8, , 10];
 
 var _continents = {
     ["South America"]: [
@@ -447,7 +447,7 @@ var _dinos = {
     ["Baryonyx walkeri"]: {
         year_max: 130,
         year_min: 125,
-        eats: PESCIVORE_AND_CARNIVORE, // found with fish scales in its stomach. also found with iguanodontid (baby iirc) in its stomach.
+        eats: PISCIVORE_AND_CARNIVORE, // found with fish scales in its stomach. also found with iguanodontid (baby iirc) in its stomach.
         lives: ["England"],
         lives_precise: ["Weald Clay"],
         wikipedia: "https://en.wikipedia.org/wiki/Baryonyx",
@@ -575,7 +575,7 @@ var _dinos = {
     ["Ceratosuchops inferodios"]: {
         year_max: 128,
         year_min: 128,
-        eats: PESCIVORE_OR_CARNIVORE, // spinosaurids were at least partially piscivorous (fish-eating)
+        eats: PISCIVORE_OR_CARNIVORE, // spinosaurids were at least partially piscivorous (fish-eating)
         lives: ["England"],
         lives_precise: ["Wessex Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Ceratosuchops",
@@ -729,7 +729,7 @@ var _dinos = {
     ["Dromaeosauroides bornholmensis"]: {
         year_max: 140,
         year_min: 140,
-        eats: PESCIVORE_OR_CARNIVORE, // Coprolites containing fish remains found in the Jydegaard Formation may belong to Dromaeosauroides.
+        eats: PISCIVORE_OR_CARNIVORE, // Coprolites containing fish remains found in the Jydegaard Formation may belong to Dromaeosauroides.
         lives: ["Denmark"],
         lives_precise: ["Jydegaard Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Dromaeosauroides",
@@ -988,7 +988,7 @@ var _dinos = {
     ["Iberospinus natarioi"]: {
         year_max: 129.4,
         year_min: 125,
-        eats: PESCIVORE_OR_CARNIVORE,
+        eats: PISCIVORE_OR_CARNIVORE,
         lives: ["Portugal"],
         lives_precise: ["Papo Seco Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Iberospinus",
@@ -1437,7 +1437,7 @@ var _dinos = {
     ["species"]: {
         year_max: ,
         year_min: ,
-        eats: INSECTIVORE CARNIVORE HERBIVORE OMNIVORE HERBIVORE_OR_OMNIVORE CARNIVORE_OR_OMNIVORE INSECTIVORE_OR_CARNIVORE PESCIVORE PESCIVORE_AND_CARNIVORE PESCIVORE_OR_CARNIVORE,
+        eats: INSECTIVORE CARNIVORE HERBIVORE OMNIVORE HERBIVORE_OR_OMNIVORE CARNIVORE_OR_OMNIVORE INSECTIVORE_OR_CARNIVORE PISCIVORE PISCIVORE_AND_CARNIVORE PISCIVORE_OR_CARNIVORE,
         lives: ["Germany"] _continents["Peninsular Spain"],
         lives_precise: [""], // optional
         wikipedia: "",

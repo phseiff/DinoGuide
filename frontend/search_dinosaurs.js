@@ -45,24 +45,26 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [CARNIVORE]: "🥩",
         [HERBIVORE]: "🌲",
         [OMNIVORE]: "🥩&🌲",
-        [HERBIVORE_OR_OMNIVORE]: "🌲&nbsp;or&nbsp;🥩&🌲",
-        [CARNIVORE_OR_OMNIVORE]: "🥩&nbsp;or&nbsp;🥩&🌲",
-        [INSECTIVORE_OR_CARNIVORE]: "🦗&nbsp;and/or&nbsp;🥩",
-        [PESCIVORE]: "🐟",
-        [PESCIVORE_AND_CARNIVORE]: "🐟🥩",
-        [PESCIVORE_OR_CARNIVORE]: "🐟&nbsp;and/or&nbsp;🥩",
+        [HERBIVORE_OR_OMNIVORE]: "🌲 or 🥩&🌲",
+        [CARNIVORE_OR_OMNIVORE]: "🥩 or 🥩&🌲",
+        [INSECTIVORE_OR_CARNIVORE]: "🦗 and/or 🥩",
+        [PISCIVORE]: "🐟",
+        [PISCIVORE_AND_CARNIVORE]: "🐟&🥩",
+        [PISCIVORE_OR_CARNIVORE]: "🐟 and/or 🥩",
     };
     let diet_to_mouseover = {
         [INSECTIVORE]: "Insectivore",
         [CARNIVORE]: "Carnivore",
         [HERBIVORE]: "Herbivore",
         [OMNIVORE]: "Omnivore",
-        [HERBIVORE_OR_OMNIVORE]: "Herbivore or Omnivore",
-        [CARNIVORE_OR_OMNIVORE]: "Carnivore or Omnivore",
-        [INSECTIVORE_OR_CARNIVORE]: "Insectivore and/or Carnivore",
-        [PESCIVORE]: "Pescivore",
-        [PESCIVORE_AND_CARNIVORE]: "Fish– and Meat-Eater", // <- this wording sounds less weird imo than "Pescivore and Carnivore"
-        [PESCIVORE_OR_CARNIVORE]: "Pescivore and/or Carnivore",
+        [HERBIVORE_OR_OMNIVORE]: "Herbivore or omnivore",
+        [CARNIVORE_OR_OMNIVORE]: "Carnivore or omnivore",
+        [INSECTIVORE_OR_CARNIVORE]: "Insectivore and/or carnivore",
+        [PISCIVORE]: "Piscivore",
+        [PISCIVORE_AND_CARNIVORE]: "Fish– and meat-eater",
+        // ^ We say "fish- and meat-eater" rather than "piscivore and carnivore" bc piscivore implies that the animal only or primarily eats fish,
+        //   meaning that combing "piscivore" and "carnivore" with an "and" is mildly contradictory.
+        [PISCIVORE_OR_CARNIVORE]: "Piscivore and/or carnivore",
     };
     dinosaur_names = Array.from(dinosaur_names);
     dinosaur_names.sort();
@@ -75,7 +77,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
             "<a rel='noopener noreferrer' target='_blank' href='" +
             _dinos[name].wikipedia + "'>" + name + "</a> " +
             "<small>(ate:&nbsp;<span title='" + diet_to_mouseover[_dinos[name].eats] +
-            "'>" + diet_to_emoji[_dinos[name].eats] + "</span>)</small><br>" +
+            "'>" + diet_to_emoji[_dinos[name].eats].replaceAll(" ", "&nbsp;") + "</span>)</small><br>" +
             (
                 _dinos[name].year_max == _dinos[name].year_min
                 ? ("<small>lived " + year_max)
