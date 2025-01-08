@@ -109,6 +109,10 @@ var _places = {
     ["Hungary"]: {
         id: 21335,
     },
+    // Italy
+    ["Italy"]: {
+        id: 365331,
+    },
     // Netherlands
     ["Netherlands"]: {
         id: 47796,
@@ -188,6 +192,10 @@ var _places = {
     // Switzerland
     ["Switzerland"]: {
         id: 51701,
+    },
+    // Ukraine
+    ["Ukraine"]: {
+        id: 60199,
     },
 
     // South America:
