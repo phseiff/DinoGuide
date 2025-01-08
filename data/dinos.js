@@ -1936,7 +1936,6 @@ var _dinos = {
         lives_precise: ["Lourinhã Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Zby",
     },
-    */
 }
 
 // ToDo: find the short name for each of them and assign them this short name as a "name"-attribute if it is unique.
