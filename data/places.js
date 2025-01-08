@@ -12,14 +12,16 @@ Optional:
               value that states which area group it belongs into; if no area group is specified, the place is
               assigned the area group "government_borders", which contains countries and municipalities of countries
               (except for countries that are in border disputes with one another, who get their own groups).
-              The purpose of area groups is that the no-partial-intersections rule gives the search_dinosaurs.js code
-              guarantees that can be used for oprimizations.
+              The purpose of area groups is that the no-partial-intersections rule gives the
+              backend/search_dinosaurs.js code guarantees that can be used for oprimizations.
 * is_in: The name (index of _places) of the (or a) country or area that the place is in. Used for optimizations.
 
 Automatically generated via code:
 * contains:   _places[foobar].contains is a name-to-object mapping of places, similar to _places, but only containing
               the places whose is_in attribute is foobar. It points to the same objects (rather than copies of them) as
               _places.
+* descendents:
+              A set containing the ids of children, grandchildren etc of the place, as defined by the is_in attributes.
 The following attributes are cleared and re-generated for every dino search based on the timespan selected:
 * lives:      A set containing the names (keys of _dinos) of dinosaurs that lived during the selected timespan in the
               entirety (not just sub-places!) of the place, according to the dinosaur's lives-attribute.

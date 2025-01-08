@@ -111,11 +111,25 @@ function search_dinosaurs_in_place(place_entry, coordinates, _places) {
         add_to_cache(coordinates, place_entry.id, hit);
     }
 
-    // First we check if our location is identical to the potential dinosaur location:
-    if (coordinates.id == place_entry.id) {
-        mark_place_entry_hit(true, true);
-        window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
-        return true;
+    if (coordinates.id) {
+        // First we check if our location is identical to the potential dinosaur location:
+        if (coordinates.id == place_entry.id) {
+            mark_place_entry_hit(true, true);
+            window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
+            return true;
+        }
+    
+        // If our location is different (by ID) from the dinosaur location, in the same area group and not a
+        // descendent, then we can conclude that there is no intersection between both:
+        else if (
+            _area_groups_by_id[coordinates.id]
+            && _area_groups_by_id[coordinates.id] == _area_groups_by_id[place_entry.id]
+            && !(place_entry.descendents.has(coordinates.id))
+        ) {
+            mark_place_entry_hit(false);
+            window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
+            return true;
+        }
     }
 
     // Then we check for intersection in the cache:

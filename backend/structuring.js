@@ -3,14 +3,27 @@
 function build_places_tree(_places) {
     for (let key in _places) {
         let place_entry = _places[key];
+        // add id and area group to _area_groups_by_id.
         _area_groups_by_id[place_entry.id] = place_entry.area_group || "government_borders";
         if (place_entry.is_in) {
             let parent = _places[place_entry.is_in];
+            // create .contains attribute in parent
             if (!parent.contains) {
                 parent.contains = {};
             }
             parent.contains[key] = place_entry;
+            // create .descendents attribute in parent, grandparents etc.
+            while (true) {
+                parent.descendents = parent.descendents || new Set();
+                parent.descendents.add(place_entry.id);
+                if (parent.is_in) {
+                    parent = _places[parent.is_in];
+                } else {
+                    break;
+                }
+            }
         }
+        place_entry.descendents = place_entry.descendents || new Set();
         // dinosaur entries
         place_entry.lives = new Set();
         place_entry.lives_extended = new Set();

@@ -1190,6 +1190,14 @@ var _dinos = {
         lives_precise: ["Gosau Group"],
         wikipedia: "https://en.wikipedia.org/wiki/Mochlodon",
     },
+    ["Mochlodon in Germany (fake)"]: {
+        year_max: 85,
+        year_min: 80,
+        eats: HERBIVORE,
+        lives: ["Germany"],
+        lives_precise: ["Gosau Group"],
+        wikipedia: "https://en.wikipedia.org/wiki/Mochlodon",
+    },
     ["Mochlodon vorosi"]: {
         year_max: 85,
         year_min: 80,
