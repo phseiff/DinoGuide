@@ -15,7 +15,7 @@ The guidelines below differ marginally from the guidelines outlined in the comme
 The key in `_dinos` must be the entire binominal name
 (unless no species has been named inside the genus, in which case the name of the genus suffices).
 "[genus name] sp. ([unnamed|unidentified] species)" also works.
-Dubius genuses and nomen nudem may not be added to the list, except for a comment stating that the genus is dubious
+Dubious genuses and nomen nudem may not be added to the list, except for a comment stating that the genus is dubious
 to show that it was not forgotten.
 
 ### .lives and .lives_precise
@@ -30,7 +30,7 @@ Add whatever the wikipedia article says about where the dinosaur lived, with the
 
 (b) If the article says nothing about where the animal lived, treat it as if it said "[dinosaur] lived in [rock formation it was found in]" (implying the need for modifications outlined in (a).)
 
-(c) If the article says "[dinosaur] lived in [country/continent it was found in]", but the source cited makes no such claim, then you should use the information provided in the source instead. if the source says nothing about where the animal lived, ignore the wikipedia article's claims and proveed with (b).
+(c) If the article says "[dinosaur] lived in [country/continent it was found in]", but the source cited makes no such claim, then you should use the information provided in the source instead. if the source says nothing about where the animal lived, ignore the wikipedia article's claims and proceed with (b).
 
 (d) If, after applying the steps above, you end up with multiple locations, AND there is no specific reason to assume that the animal did not live in the space in between these location as well (e.g. because of a statistically conclusive fossil record or oceans/mountains in between the locations), THEN you should add the area in between the locations to the lives attribute as well.
 
