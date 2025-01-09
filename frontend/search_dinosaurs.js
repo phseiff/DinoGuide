@@ -63,7 +63,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [CARNIVORE_OR_OMNIVORE]: "Carnivore or omnivore",
         [INSECTIVORE_OR_CARNIVORE]: "Insectivore and/or carnivore",
         [PISCIVORE]: "Piscivore",
-        [PISCIVORE_AND_CARNIVORE]: "Fish– and meat-eater",
+        [PISCIVORE_AND_CARNIVORE]: "Fish and meat eater",
         // ^ We say "fish- and meat-eater" rather than "piscivore and carnivore" bc piscivore implies that the animal only or primarily eats fish,
         //   meaning that combing "piscivore" and "carnivore" with an "and" would be mildly contradictory.
         [PISCIVORE_OR_CARNIVORE]: "Piscivore and/or carnivore",
