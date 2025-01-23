@@ -36,6 +36,18 @@ function on_time_change(cause) {
     update_time_as_name();
 }
 
+function useTimeRange() {
+    let use_range = document.getElementById("use_time_range").checked;
+    if (use_range == true) {
+        document.getElementById("time_simple").hidden = true;
+        document.getElementById("time_complicated").hidden = false;
+    } else {
+        document.getElementById("time_simple").hidden = false;
+        document.getElementById("time_complicated").hidden = true;
+    }
+    _data.use_time_range = use_range;
+}
+
 function use_device_time() {
     // This was an intended feature that would use the user's system time to determine the time.
     //  This way, if the user set their system time to -66million years (and their system

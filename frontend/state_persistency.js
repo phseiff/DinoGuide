@@ -23,6 +23,11 @@ function initialize_from_cookies() {
     document.getElementById("time_as_range").value = _data.million_years_ago;
     document.getElementById("consent_to_osm").checked = _data.consent_to_osm_usage;
     update_time_as_name();
+    document.getElementById("use_time_range").checked = _data.use_time_range;
+    document.getElementById("time_as_text_from").value = _data.million_years_ago_from;
+    document.getElementById("time_as_range_from").value = _data.million_years_ago_from;
+    document.getElementById("time_as_text_to").value = _data.million_years_ago_to;
+    document.getElementById("time_as_range_to").value = _data.million_years_ago_to;
     // Initialize search
     _search_is_ready = true;
     build_places_tree(_places);

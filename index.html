@@ -156,14 +156,39 @@
     <br>
 
     <label for="time"><strong>What time to travel to:</strong></label><br>
-    <label id="time_as_name"></label>
-    <input type="number" id="time_as_text" name="time_as_text" min="66" max="252" value="66" oninput="on_time_change('time_as_text');">
-    <label for="time_as_text">million years ago</label><br>
-    <input type="range" id="time_as_range" name="time_as_range" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range');"><br>
+    <span id="time_simple">
+        <label id="time_as_name"></label>
+        <input type="number" id="time_as_text" name="time_as_text" min="66" max="252" value="66" oninput="on_time_change('time_as_text');">
+        <label for="time_as_text">million years ago</label><br>
+        <input type="range" id="time_as_range" name="time_as_range" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range');"><br>
+    </span>
+    <span id="time_complicated" hidden="true">
+        <!-- from -->
+        <label>from</label>
+        <select id="time_period_selection_from"  onchange="onTimePeriodSelection('from')" style="max-width: 100%">
+            <option value='select'>Select...</option>"
+        </select>
+        <label>,</label><br>
+        <input type="number" id="time_as_text_from" min="66" max="252" value="67" oninput="on_time_change('time_as_text_from');">
+        <label>million years ago,</label><br>
+        <!-- to -->
+        <label>to</label>
+        <select id="time_period_selection_to"  onchange="onTimePeriodSelection('to')" style="max-width: 100%">
+            <option value='select'>Select...</option>"
+        </select>
+        <label>,</label><br>
+        <input type="number" id="time_as_text_to" min="66" max="252" value="66" oninput="on_time_change('time_as_text_to');">
+        <label>million years ago,</label><br>
+        <!-- time span -->
+        <input type="range" id="time_as_range_from" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range_from');">
+        <input type="range" id="time_as_range_to" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range_to');"><br>
+    </span>
+    <input type="checkbox" id="use_time_range" onclick="useTimeRange()">
+    <label for="use_time_range">Select time span</label><br>
     <span hidden="true">
-    <input type="checkbox" id="use_system_time" name="use_system_time" onclick="use_device_time('')">
-    <label for="use_system_time">Use system time</label><br>
-    <label id="device_time_error_text"></label><br>
+        <input type="checkbox" id="use_system_time" name="use_system_time" onclick="use_device_time('')">
+        <label for="use_system_time">Use system time</label><br>
+        <label id="device_time_error_text"></label><br>
     </span>
 
     <br>
