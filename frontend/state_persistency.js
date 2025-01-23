@@ -15,10 +15,7 @@ function initialize_from_cookies() {
         useDeviceLocation();
     }
     document.getElementById("place_name").innerHTML = location_coords_JSON_to_string(_data.location_coordinates) + "<br>";
-    document.getElementById("use_system_time").checked = _data.use_device_time;
-    if (_data.use_device_time) {
-        use_device_time();
-    }
+
     document.getElementById("time_as_text").value = _data.million_years_ago;
     document.getElementById("time_as_range").value = _data.million_years_ago;
     document.getElementById("consent_to_osm").checked = _data.consent_to_osm_usage;
