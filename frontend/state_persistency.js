@@ -1,9 +1,7 @@
 // Function to load from cookies:
 function initialize_ui_min_and_max_time_from_cookies() {
-    document.getElementById("time_as_text_from").value = _data.million_years_ago_max;
-    document.getElementById("time_as_range_from").value = _data.million_years_ago_max;
-    document.getElementById("time_as_text_to").value = _data.million_years_ago_min;
-    document.getElementById("time_as_range_to").value = _data.million_years_ago_min;
+    set_time_max(_data.million_years_ago_max);
+    set_time_min(_data.million_years_ago_min);
 }
 
 function initialize_from_cookies() {
@@ -29,6 +27,7 @@ function initialize_from_cookies() {
     update_time_as_name();
     document.getElementById("use_time_range").checked = _data.use_time_range;
     useTimeRange();
+    initialize_time_period_dropdowns();
     initialize_ui_min_and_max_time_from_cookies();
     // Initialize search
     _search_is_ready = true;

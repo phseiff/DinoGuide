@@ -11,33 +11,74 @@ const _time_periods = [
     {name: "Early Triassic", year_min: 248, year_max: 252},
 ]
 
-function update_time_as_name() {
-    let time = _data.million_years_ago;
+function initialize_time_period_dropdowns() {
+    let options = "";
+    for (let i=0; i<_time_periods.length; i++) {
+        options += "<option value='" + _time_periods[i].name + "'>" + _time_periods[i].name + "</option>";
+    }
+    document.getElementById("time_period_selection_max").innerHTML = options;
+    document.getElementById("time_period_selection_min").innerHTML = options;
+}
+
+function update_time_as_name(dropdown_id, time) {
+    time = time || _data.million_years_ago;
     var time_as_name;
     for (let i=0; i<_time_periods.length; i++) {
         if (time <= _time_periods[i].year_max) {
             time_as_name = _time_periods[i].name;
+            break;
         }
     }
-    display_error_text("time_as_name", time_as_name + ",", true);
+    if (!dropdown_id) {
+        display_error_text("time_as_name", time_as_name + ",", true);
+    } else {
+        document.getElementById(dropdown_id).value = time_as_name;
+    }
 }
 
-function switch_time_min_and_max() {
-    console.log("switch !");
-    [_data.million_years_ago_min, _data.million_years_ago_max] = [_data.million_years_ago_max, _data.million_years_ago_min];
-    initialize_ui_min_and_max_time_from_cookies();
+function get_time_period_min_or_max(time_period_name, min_or_max) {
+    for (let i=0; i<_time_periods.length; i++) {
+        if (time_period_name == _time_periods[i].name) {
+            return _time_periods[i]["year_" + min_or_max];
+        }
+    }
+}
+
+function select_min_from_time_period_dropdown() {
+    set_time_min(get_time_period_min_or_max(
+        document.getElementById("time_period_selection_min").value,
+        "min"
+    ));
+    switch_time_min_and_max_if_needed();
+}
+
+function select_max_from_time_period_dropdown() {
+    set_time_max(get_time_period_min_or_max(
+        document.getElementById("time_period_selection_max").value,
+        "max"
+    ));
+    switch_time_min_and_max_if_needed();
+}
+
+function switch_time_min_and_max_if_needed() {
+    if (_data.million_years_ago_min > _data.million_years_ago_max) {
+        [_data.million_years_ago_min, _data.million_years_ago_max] = [_data.million_years_ago_max, _data.million_years_ago_min];
+        initialize_ui_min_and_max_time_from_cookies();
+    }
 }
 
 function set_time_min(time) {
     document.getElementById("time_as_range_to").value = time;
     document.getElementById("time_as_text_to").value = time;
     _data.million_years_ago_min = +time;
+    update_time_as_name("time_period_selection_min", time);
 }
 
 function set_time_max(time) {
     document.getElementById("time_as_range_from").value = time;
     document.getElementById("time_as_text_from").value = time;
     _data.million_years_ago_max = +time;
+    update_time_as_name("time_period_selection_max", time);
 }
 
 function set_time_min_and_max(time) {
@@ -77,12 +118,7 @@ function on_time_change(cause) {
         } else if (cause.includes("_to")) {
             set_time_min(time);
         }
-        if (_data.million_years_ago_min > _data.million_years_ago_max) {
-            console.log("min: " + _data.million_years_ago_min);
-            console.log("max: " + _data.million_years_ago_max);
-            console.log("min > max: " + (_data.million_years_ago_min > _data.million_years_ago_max));
-            switch_time_min_and_max();
-        }
+        switch_time_min_and_max_if_needed();
     }
 }
 
