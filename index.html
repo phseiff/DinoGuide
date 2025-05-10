@@ -171,6 +171,7 @@
         <label>,</label><br>
         <input type="number" id="time_as_text_from" min="66" max="252" value="67" oninput="on_time_change('time_as_text_from');">
         <label>million years ago,</label><br>
+        <input type="range" id="time_as_range_from" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range_from');">
         <!-- to -->
         <label>to</label>
         <select id="time_period_selection_to"  onchange="onTimePeriodSelection('to')" style="max-width: 100%">
@@ -178,9 +179,7 @@
         </select>
         <label>,</label><br>
         <input type="number" id="time_as_text_to" min="66" max="252" value="66" oninput="on_time_change('time_as_text_to');">
-        <label>million years ago,</label><br>
-        <!-- time span -->
-        <input type="range" id="time_as_range_from" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range_from');">
+        <label>million years ago.</label><br>
         <input type="range" id="time_as_range_to" style="direction: rtl" min="66" max="252" value="66" onchange="on_time_change('time_as_range_to');"><br>
     </span>
     <input type="checkbox" id="use_time_range" onclick="useTimeRange()">

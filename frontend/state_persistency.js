@@ -1,4 +1,11 @@
 // Function to load from cookies:
+function initialize_ui_min_and_max_time_from_cookies() {
+    document.getElementById("time_as_text_from").value = _data.million_years_ago_max;
+    document.getElementById("time_as_range_from").value = _data.million_years_ago_max;
+    document.getElementById("time_as_text_to").value = _data.million_years_ago_min;
+    document.getElementById("time_as_range_to").value = _data.million_years_ago_min;
+}
+
 function initialize_from_cookies() {
     let name = "dino_guide_app_state=";
     let result = document.cookie.split(name);
@@ -21,10 +28,8 @@ function initialize_from_cookies() {
     document.getElementById("consent_to_osm").checked = _data.consent_to_osm_usage;
     update_time_as_name();
     document.getElementById("use_time_range").checked = _data.use_time_range;
-    document.getElementById("time_as_text_from").value = _data.million_years_ago_from;
-    document.getElementById("time_as_range_from").value = _data.million_years_ago_from;
-    document.getElementById("time_as_text_to").value = _data.million_years_ago_to;
-    document.getElementById("time_as_range_to").value = _data.million_years_ago_to;
+    useTimeRange();
+    initialize_ui_min_and_max_time_from_cookies();
     // Initialize search
     _search_is_ready = true;
     build_places_tree(_places);
@@ -47,4 +52,8 @@ var _data = {
     consent_to_osm_usage: false,
     use_device_time: false,
     million_years_ago: 66,
+
+    use_time_range: false,
+    million_years_ago_min: 66,
+    million_years_ago_max: 66,
 }

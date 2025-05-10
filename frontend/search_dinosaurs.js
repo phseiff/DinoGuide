@@ -29,7 +29,7 @@ function search_dinosaurs() {
     _times_that_search_has_run += 1;
     document.getElementById("dino_results").innerHTML = "";
     // add dinos to places tree:
-    add_dinos_to_places_tree(_places, _dinos, _data.million_years_ago, _data.million_years_ago);
+    add_dinos_to_places_tree(_places, _dinos, get_selected_time_min(), get_selected_time_max());
     // lock interfaces:
     lock_location_selection_functionalities("search_dinosaurs_button");
     // do the actual search:
