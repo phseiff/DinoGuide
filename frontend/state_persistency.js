@@ -32,6 +32,7 @@ function initialize_from_cookies() {
     // Initialize search
     _search_is_ready = true;
     build_places_tree(_places);
+    parse_dino_lives_in_continent_names();
     roundDinoLivingTime();
     errorCheckDinoData();
 }

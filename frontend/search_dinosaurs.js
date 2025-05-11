@@ -36,6 +36,34 @@ function search_dinosaurs() {
     start_searching_dinosaurs_in_places_tree(_places, _data.location_coordinates);
 }
 
+function render_dino_locations_list(dino_data) {
+    let location_names = [];
+    for (location_name of (dino_data.lives_written || dino_data.lives)) {
+        if (typeof(location_name) == "object") {
+            location_names.push(location_name[0]);
+        } else {
+            location_names.push(location_name);
+        }
+    }
+    let s = location_names.join(", ");
+    if (dino_data.lives_extended) {
+        s += ", and maybe "
+        location_names = [];
+        for (location_name of (dino_data.lives_extended_written || dino_data.lives_extended)) {
+            if (typeof(location_name) == "object") {
+                location_names.push(location_name[0]);
+            } else {
+                location_names.push(location_name);
+            }
+        }
+        s += location_names.join(", ");
+    }
+    if (dino_data.lives_exclusively) {
+        s += " and nowhere else.";
+    }
+    return s;
+}
+
 function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
     // Returns a piece of html that represents a list of the dinosaurs in dinosaur_names,
     //  with added information like diet and time range.
@@ -88,7 +116,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
             " mil years ago</small><br>" +
             (
                 show_locations
-                ? ("<small>lived in: " + _dinos[name].lives.join(", ") + "</small><br>")
+                ? ("<small>lived in: " + render_dino_locations_list(_dinos[name]) + "</small><br>")
                 : ""
             ) +
             "<br></span>"

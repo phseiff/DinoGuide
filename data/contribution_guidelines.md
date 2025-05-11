@@ -43,7 +43,7 @@ The key in `_dinos` must be the entire binominal name
 Dubious genuses and nomen nudem may not be added to the list, except for a comment stating that the genus is dubious
 to show that it was not forgotten.
 
-### .lives and .lives_precise
+### .lives, .lives_extended and .lives_precise
 
 The .lives-attribute is an array filled with the names of places the animal lived in, all of whom have to be present in _places.
 
@@ -55,15 +55,24 @@ Add whatever the wikipedia article says about where the dinosaur lived, with the
 
 (b) If the article says nothing about where the animal lived, treat it as if it said "[dinosaur] lived in [rock formation it was found in]" (implying the need for modifications outlined in (a).)
 
-(c) If the article says "[dinosaur] lived in [country/continent it was found in]", but the source cited makes no such claim, then you should use the information provided in the source instead. if the source says nothing about where the animal lived, ignore the wikipedia article's claims and proceed with (b).
+(c) If the article says "[dinosaur] lived in [country/continent it was found in]", but the source cited makes no such claim, then you should use the information provided in the source instead. If the source says nothing about where the animal lived, ignore the wikipedia article's claims and proceed with (b).
 
-(d) If, after applying the steps above, you end up with multiple locations, AND there is no specific reason to assume that the animal did not live in the space in between these location as well (e.g. because of a statistically conclusive fossil record or oceans/mountains in between the locations), THEN you should add the area in between the locations to the lives attribute as well.
+(d) If, after applying the steps above, you end up with multiple locations, AND there is no specific reason to assume that the animal did not live in the space in between these location as well (e.g. because of a statistically conclusive fossil record or oceans/mountains in between the locations), THEN you should add the area in between the locations to the lives_extended attribute.
 
-If following rules a-d as outlined above causes discrepancies between what the wikipedia article says and what you put into the lives attribute, you must put the claim made by the wikipedia article into the lives_precise attribute (which is an array of strings that do not necessarily have to be in _places), UNLESS the information in wikipedia is straightup misinformation rather than a more conservative/liberal estimate, in which case you should add wikipedia's claims in a comment. if your modification results from b-d, then you must also add a comment explaining your modification (in a way that does not rely on the reader having read the text you are reading right now). Said comment must include your sources, ideally in a way resistant to link rot.
+If following rules a-d as outlined above causes discrepancies between what the wikipedia article says and what you put into the lives attribute, you must put the claim made by the wikipedia article into the lives_precise attribute (which is an array of strings that do not necessarily have to be in _places), UNLESS the information in wikipedia is straightup misinformation rather than a more conservative/liberal estimate, in which case you should add wikipedia's claims in a comment. If your modification results from b-d, then you must also add a comment explaining your modification (in a way that does not rely on the reader having read the text you are reading right now). Said comment must include your sources, ideally in a way resistant to link rot.
 
+If a dinosaur is definitely known not to have left the areas included in its .lives and .lives_extended attributes (e.g. because of insularity), then it must be given the .lives_exclusively attribute.
+
+One can argue -and in fact, it used to be policy- that it would be a good idea to use the lives_extended attribute to hold the entire area that a dinosaur might have lived in based on natural boundaries such as oceans, mountain chains etc., unless there are findings contraindicating such a wide range.
+However, after careful re-consideration I have decided against such an approach, because:
+(1) it would involve a lot of repetitive work (checking when the dinosaur lived, what the tectonic plates looked like back then, and adding a _continent-reference to that area.
+(2) it would make the .lives_extended-attribute essentially say the same for every north america dinosaur, the same for every late cretaceous european dinosaur, etc, meaning the .lives_extended-attributes would take up a lot of RAM space relative to the (relatively small) amount of information they convey.
+(3) one can simply search for e.g. "North America" or "Ibero-Armorican Island" or something like that if one wants to find all dinosaurs that might've lived there under the assumption of a wide spread (and the .lives_exclusively attribute will remove ambiguousness that might make such an approach problematic).
+
+<!--
 ### .lives_extended
 
-A n array filled with the names of places the animal *might have* lived in, all of whom have to be present in _places.
+An array filled with the names of places the animal *might have* lived in, all of whom have to be present in _places.
 Whilst `.lives` attempts to offer a relatively (but not overly) conservative (in the direction of erring on the side of undershooting the animals actual distribution) estimate of where the animal might have lived, `.lives_extended` offers the largest estimate that isn't contraindicated by findings, overwhelming statistical evidence and matters of geography. In other words: Whilst `.lives` errs on the side of "the animal didn't live in xyz place because we haven't found it in this area", `.lives_extended` errs on the side of "the animal could have lived there, so we assume it did."
 
 How to fill the `.lives_extended` attribute:
@@ -71,6 +80,7 @@ How to fill the `.lives_extended` attribute:
 - Every place in `.lives` should also be in `.lives_extended`.
 - If the animal was found in place xyz, and place abc is (a) connected to place xyz by land, (b) not separated from place xyz by seas or mountain ranges, (c) in the same climate zone, (d) had a similar ecosystem (erring on the side of "yes" until informaed better is okay for this point), and (e) is connected by more than just a tiny land bridge, THEN we add place abs to `.lives_extended`.
 - The above bullet point does not apply if there are reasons to assume otherwise. A qualified scientist or a study expressing (or having expressed) a sentiment that differs from the amateur contributor's judgement counts as a reason to assume otherwise.
+-->
 
 ### .year_min and .year_max
 

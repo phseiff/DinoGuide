@@ -4,7 +4,7 @@ var [UNKNOWN_DIET, INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMN
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 var _continents = {
-    ["South America"]: [
+    ["South America"]: [ // TODO: This might've been used too liberally in the .lies-attribute; go through its mentions to fix that
         "Argentina",
         "Bolivia",
         "Brazil",
@@ -41,20 +41,8 @@ var _continents = {
     // Ibero-Armorican Island
 }
 
-function fuse(l) {
-    // turns a list of (strings and lists of strings) into a single list of strings w/o duplicates in it
-    var l2 = [];
-    for (var i=0; i<l.length; i++) {
-        if (typeof l[i] == "object") {
-            for (var j=0; j<l[i].length; j++) {
-                l2.push(l[i][j])
-            }
-        } else {
-            l2.push(l[i]);
-        }
-    }
-    ls2 = [...new Set(l2)];
-    return l2;
+function continent(continent_name) {
+    return [continent_name];
 }
 
 var _dinos = {
@@ -63,8 +51,10 @@ var _dinos = {
         year_max: ,
         year_min: ,
         eats: UNKNOWN_DIET INSECTIVORE CARNIVORE HERBIVORE OMNIVORE HERBIVORE_OR_OMNIVORE CARNIVORE_OR_OMNIVORE INSECTIVORE_OR_CARNIVORE PISCIVORE PISCIVORE_AND_CARNIVORE PISCIVORE_OR_CARNIVORE,
-        lives: ["Germany"] _continents["Peninsular Spain"],
+        lives: ["Germany", continent("Peninsular Spain"), etc],
         lives_precise: [""], // optional
+        lives_extended: [""], // optional
+        lives_exclusively: true, // optional
         wikipedia: "",
     },
     */
@@ -124,7 +114,7 @@ var _dinos = {
         lives_precise: ["Tremp Formation"],
         // ^ tempting to turn this into pyrenees (the mountains) but idk if they even existed back then.
         // so we will turn it into spain (and leave out portugal).
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         wikipedia: "https://en.wikipedia.org/wiki/Abditosaurus",
     },
     ["Abelisaurus comahuensis"]: {
@@ -132,7 +122,7 @@ var _dinos = {
         year_min: 80,
         eats: CARNIVORE,
         // wikipedia openly states where it lived, so no reverse-engineering from fossil sites this time!
-        lives: _continents["South America"],
+        lives: [continent("South America")],
         wikipedia: "https://en.wikipedia.org/wiki/Abelisaurus",
     },
     ["Abrictosaurus consors"]: {
@@ -239,7 +229,7 @@ var _dinos = {
         year_max: 75,
         year_min: 75,
         eats: HERBIVORE,
-        lives: _continents["South America"],
+        lives: [continent("South America")],
         wikipedia: "https://en.wikipedia.org/wiki/Adamantisaurus",
     },
     ["Adasaurus mongoliensis"]: {
@@ -278,7 +268,7 @@ var _dinos = {
         year_min: 70,
         eats: HERBIVORE,
         lives_precise: ["Catalonia"],
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         wikipedia: "https://en.wikipedia.org/wiki/Adynomosaurus",
     },
     ["Aegyptosaurus baharijensis"]: {
@@ -297,7 +287,7 @@ var _dinos = {
         eats: HERBIVORE,
         lives_precise: ["Brazil", "Argentina"], 
         // ^ presumably, since the article does not elaborate on which of both species in the genum were found at which site
-        lives: _continents["South America"],
+        lives: [continent("South America")],
         wikipedia: "https://en.wikipedia.org/wiki/Aeolosaurus",
     },
     ["Aeolosaurus colhuehuapensis"]: {
@@ -306,7 +296,7 @@ var _dinos = {
         eats: HERBIVORE,
         lives_precise: ["Brazil", "Argentina"],
         // ^ presumably, since the article does not elaborate on which of both species in the genum were found at which site
-        lives: _continents["South America"],
+        lives: [continent("South America")],
         wikipedia: "https://en.wikipedia.org/wiki/Aeolosaurus",
     },
     ["Aepisaurus elephantinus"]: {
@@ -395,7 +385,7 @@ var _dinos = {
         year_max: 145,
         year_min: 140,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Aragosaurus",
     },
@@ -435,7 +425,7 @@ var _dinos = {
         year_max: 66,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Tremp Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Arenysaurus",
     },
@@ -499,7 +489,7 @@ var _dinos = {
         year_max: 66,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Arén Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Blasisaurus",
     },
@@ -571,7 +561,7 @@ var _dinos = {
         year_max: 66.1,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Tremp Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Calvarius",
     },
@@ -579,7 +569,7 @@ var _dinos = {
         year_max: 130,
         year_min: 125,
         eats: CARNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Camarillas Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Camarillasaurus",
     },
@@ -667,7 +657,7 @@ var _dinos = {
         year_max: 125,
         year_min: 125,
         eats: CARNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["La Huérguina Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Concavenator",
     },
@@ -708,7 +698,7 @@ var _dinos = {
         year_max: 154,
         year_min: 140,
         eats: HERBIVORE,
-        lives: fuse(["England", "Metropolitan France", "Portugal", _continents["Peninsular Spain"]]),
+        lives: ["England", "Metropolitan France", "Portugal", continent("Peninsular Spain")],
         lives_precise: ["Alcobaça Formation", "Argiles d'Octeville", "Kimmeridge Clay", "Lourinhã Formation", "Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Dacentrurus",
     },
@@ -716,7 +706,7 @@ var _dinos = {
         year_max: 125,
         year_min: 125,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Castrillo de la Reina Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Demandasaurus",
     },
@@ -864,13 +854,14 @@ var _dinos = {
         eats: HERBIVORE,
         lives: ["Lower Saxony"], // island
         lives_precise: ["Süntel Formation"],
+        lives_exclusively: true,
         wikipedia: "https://en.wikipedia.org/wiki/Europasaurus",
     },
     ["Europatitan eastwoodi"]: {
         year_max: 125,
         year_min: 125,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Castrillo de la Reina Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Europatitan",
     },
@@ -878,7 +869,7 @@ var _dinos = {
         year_max: 113.0,
         year_min: 113.0,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Escucha Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Europelta",
     },
@@ -894,7 +885,7 @@ var _dinos = {
         year_max: 66.052,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Figuerola Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Fylax",
     },
@@ -902,7 +893,7 @@ var _dinos = {
         year_max: 150,
         year_min: 146,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Galvesaurus",
     },
@@ -918,7 +909,7 @@ var _dinos = {
         year_max: 125.77, // Early Cretaceous, Barremian
         year_min: 121.4,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Garumbatitan",
     },
@@ -934,7 +925,7 @@ var _dinos = {
         year_max: 125.77, // Early Cretaceous, Barremian
         year_min: 121.4,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Camarillas Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Gideonmantellia",
     },
@@ -1032,7 +1023,7 @@ var _dinos = {
         year_max: 126,
         year_min: 122,
         eats: HERBIVORE,
-        lives: fuse(["Belgium", "England", "Germany", _continents["Peninsular Spain"]]),
+        lives: ["Belgium", "England", "Germany", continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation", "Camarillas Formation", "Sainte-Barbe Clays Formation",
             "Nehden", "Wadhurst Clay Formation", "Weald Clay", "Wealden Group", "Wessex Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Iguanodon",
@@ -1075,7 +1066,7 @@ var _dinos = {
         year_max: 72,
         year_min: 70,
         eats: HERBIVORE,
-        lives: fuse(["Metropolitan France", _continents["Peninsular Spain"]]),
+        lives: ["Metropolitan France", continent("Peninsular Spain")],
         lives_precise: ["Marnes Rouges Inférieures Formation", "Sierra Perenchiza Formation", "Sobrepena Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Lirainosaurus",
     },
@@ -1083,7 +1074,7 @@ var _dinos = {
         year_max: 72,
         year_min: 72,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villalba de la Sierra Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Lohuecotitan",
     },
@@ -1107,7 +1098,7 @@ var _dinos = {
         year_max: 157.3,
         year_min: 145,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Losillasaurus",
     },
@@ -1155,7 +1146,7 @@ var _dinos = {
         year_max: 130,
         year_min: 130,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Golmayo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Magnamanus",
     },
@@ -1171,7 +1162,7 @@ var _dinos = {
         year_max: 130,
         year_min: 120,
         eats: HERBIVORE,
-        lives: fuse(["Belgium", "England", "Germany", _continents["Peninsular Spain"]]),
+        lives: ["Belgium", "England", "Germany", continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation", "Lower Greensand Group", "Nehden",
             "Sainte-Barbe Clays Formation", "Vectis Formation", "Wessex Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Mantellisaurus",
@@ -1237,7 +1228,7 @@ var _dinos = {
         year_max: 130,
         year_min: 130,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Morelladon",
     },
@@ -1286,7 +1277,7 @@ var _dinos = {
         year_max: 154.8, // Late Jurassic, Kimmeridgian–Tithonian
         year_min: 143.1,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Oblitosaurus",
     },
@@ -1359,7 +1350,7 @@ var _dinos = {
         year_max: 66,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Tremp Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Pararhabdodon",
     },
@@ -1367,7 +1358,7 @@ var _dinos = {
         year_max: 72.1, // Late Cretaceous, lower Maastrichtian
         year_min: 66.0, // this is whole Maastrichtian
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Tremp Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Pareisactus",
     },
@@ -1375,7 +1366,7 @@ var _dinos = {
         year_max: 130,
         year_min: 130,
         eats: HERBIVORE_OR_OMNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["La Huérguina Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Pelecanimimus",
     },
@@ -1393,6 +1384,7 @@ var _dinos = {
         eats: CARNIVORE,
         lives: ["Wales"],
         lives_precise: ["Pant-y-Ffynnon Quarry"], // potentially insular
+        lives_exclusively: true,
         wikipedia: "https://en.wikipedia.org/wiki/Pendraig",
     },
     ["Phyllodon henkeli"]: {
@@ -1463,7 +1455,7 @@ var _dinos = {
         year_max: 130,
         year_min: 129,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Margas de Mirambell Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Portellsaurus",
     },
@@ -1479,7 +1471,7 @@ var _dinos = {
         year_max: 112,
         year_min: 112,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Escucha Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Proa_valdearinnoensis",
     },
@@ -1503,7 +1495,7 @@ var _dinos = {
         year_max: 129.4,
         year_min: 125,
         eats: PISCIVORE_OR_CARNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Protathlitis",
     },
@@ -1520,7 +1512,7 @@ var _dinos = {
         year_max: 72.1, // Late Cretaceous, late Campanian–early Maastrichtian according to Wikipedia
         year_min: 72.1, // so using the boundary between these two ages
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villalba de la Sierra Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Qunkasaura",
     },
@@ -1552,7 +1544,7 @@ var _dinos = {
         year_max: 70,
         year_min: 66,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villalba de la Sierra Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Rhabdodon",
     },
@@ -1568,7 +1560,7 @@ var _dinos = {
         year_max: 125.77, // Early Cretaceous, Barremian–Aptian
         year_min: 113.0,
         eats: PISCIVORE_OR_CARNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Enciso Group"],
         wikipedia: "https://en.wikipedia.org/wiki/Riojavenatrix",
     },
@@ -1648,7 +1640,7 @@ var _dinos = {
         year_max: 138,
         year_min: 130,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Golmayo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Soriatitan",
     },
@@ -1704,7 +1696,7 @@ var _dinos = {
         year_max: 66.1,
         year_min: 66,
         eats: CARNIVORE_OR_OMNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Tremp Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Tamarro",
     },
@@ -1721,7 +1713,7 @@ var _dinos = {
         year_max: 125,
         year_min: 125,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Forcall Formation", "Xert Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Tastavinsaurus",
     },
@@ -1811,7 +1803,7 @@ var _dinos = {
         year_max: 155,
         year_min: 146,
         eats: HERBIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Turiasaurus",
     },
@@ -1827,7 +1819,7 @@ var _dinos = {
         year_max: 129.4,
         year_min: 125,
         eats: PISCIVORE_OR_CARNIVORE,
-        lives: _continents["Peninsular Spain"],
+        lives: [continent("Peninsular Spain")],
         lives_precise: ["Arcillas de Morella Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Vallibonavenatrix",
     },
@@ -1940,7 +1932,32 @@ var _dinos = {
 
 // ToDo: find the short name for each of them and assign them this short name as a "name"-attribute if it is unique.
 
-// TODO: find a way to make it possible to read out the .lives w/ the _continents-entry-names still intact.
+function parse_dino_lives_in_continent_names() {
+    for (const [_, dino_entry] of Object.entries(_dinos)) {
+        for (let attr of ["lives", "lives_extended"]) {
+            if (dino_entry[attr]) {
+                for (let place of dino_entry[attr]) {
+                    if (typeof(place) == "object") {
+                        dino_entry[attr + "_written"] = [];
+                        let new_lives_list = [];
+                        for (let place2 of dino_entry[attr]) {
+                            if (typeof(place2) == "object") {
+                                for (let place3 of _continents[place2[0]]) {
+                                    new_lives_list.push(place3);
+                                }
+                            } else {
+                                new_lives_list.push(place2);
+                            }
+                            dino_entry[attr + "_written"].push(place2);
+                        }
+                        dino_entry[attr] = new_lives_list;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
 
 // Round year_min and year_max to make them findable by searching for whole numbers
 
