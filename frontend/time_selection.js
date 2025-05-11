@@ -68,15 +68,15 @@ function switch_time_min_and_max_if_needed() {
 }
 
 function set_time_min(time) {
-    document.getElementById("time_as_range_to").value = time;
-    document.getElementById("time_as_text_to").value = time;
+    document.getElementById("time_as_range_min").value = time;
+    document.getElementById("time_as_text_min").value = time;
     _data.million_years_ago_min = +time;
     update_time_as_name("time_period_selection_min", time);
 }
 
 function set_time_max(time) {
-    document.getElementById("time_as_range_from").value = time;
-    document.getElementById("time_as_text_from").value = time;
+    document.getElementById("time_as_range_max").value = time;
+    document.getElementById("time_as_text_max").value = time;
     _data.million_years_ago_max = +time;
     update_time_as_name("time_period_selection_max", time);
 }
@@ -113,9 +113,9 @@ function on_time_change(cause) {
         set_time_min_and_max(time)
     // time range selection
     } else {
-        if (cause.includes("_from")) {
+        if (cause.includes("_max")) {
             set_time_max(time);
-        } else if (cause.includes("_to")) {
+        } else if (cause.includes("_min")) {
             set_time_min(time);
         }
         switch_time_min_and_max_if_needed();

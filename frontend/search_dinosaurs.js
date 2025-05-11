@@ -38,7 +38,7 @@ function search_dinosaurs() {
 
 function render_dino_locations_list(dino_data) {
     let location_names = [];
-    for (location_name of (dino_data.lives_written || dino_data.lives)) {
+    for (let location_name of (dino_data.lives_written || dino_data.lives)) {
         if (typeof(location_name) == "object") {
             location_names.push(location_name[0]);
         } else {
@@ -49,7 +49,7 @@ function render_dino_locations_list(dino_data) {
     if (dino_data.lives_extended) {
         s += ", and maybe "
         location_names = [];
-        for (location_name of (dino_data.lives_extended_written || dino_data.lives_extended)) {
+        for (let location_name of (dino_data.lives_extended_written || dino_data.lives_extended)) {
             if (typeof(location_name) == "object") {
                 location_names.push(location_name[0]);
             } else {
