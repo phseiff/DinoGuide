@@ -64,6 +64,7 @@ function render_dino_locations_list(dino_data) {
     return s;
 }
 
+
 function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
     // Returns a piece of html that represents a list of the dinosaurs in dinosaur_names,
     //  with added information like diet and time range.
@@ -109,7 +110,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
             "<small>(ate:&nbsp;<span title='" + diet_to_mouseover[_dinos[name].eats] +
             "'>" + diet_to_emoji[_dinos[name].eats].replaceAll(" ", "&nbsp;") + "</span>)</small><br>" +
             (
-                _dinos[name].year_max == _dinos[name].year_min
+                year_max == year_min
                 ? ("<small>lived " + year_max)
                 : ("<small>lived from " + year_max + " to " + year_min)
             ) +
