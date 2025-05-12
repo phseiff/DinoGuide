@@ -149,7 +149,7 @@ function finish_search_dinosaurs(success) {
             innerHTML += (
                 "No Dinosaurs are <i>known</i> to have lived at your selected time at your selected location.<br><br>" +
                 "This might be because: <ul>" +
-                    "<li>DinoGuide's data set is up-to-date with current knowledge.</li>" +
+                    "<li>DinoGuide's data set is not up-to-date with current knowledge.</li>" +
                     "<li>Your location is on a tiny island that wasn't correctly processed by DinoGuide.</li>" +
                     "<li>Your location <a rel='noopener noreferrer' target='_blank' href='https://en.wikipedia.org/wiki/Plate_tectonics'>was</a> in an ocean or on a secluded island during your selected time, where <a rel='noopener noreferrer' target='_blank' href='https://en.wikipedia.org/wiki/List_of_common_misconceptions#:~:text=" +
                     encodeURIComponent('Despite their cultural depictions as "swimming dinosaurs"') + "," +
