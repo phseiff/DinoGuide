@@ -132,5 +132,5 @@ function useTimeRange() {
         document.getElementById("time_complicated").hidden = true;
     }
     _data.use_time_range = use_range;
+    reload_dinosaur_display_if_needed() // <-- because the functionality of clicking on the dinosaur time infos is changed
 }
-

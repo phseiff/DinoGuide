@@ -1,5 +1,16 @@
 // Dino Search
 var _times_that_search_has_run = 0;
+var search_finished_running_once = false;
+var extended_dinosaurs_shown = false;
+
+function reload_dinosaur_display_if_needed() {
+    if (search_finished_running_once) {
+        finish_search_dinosaurs(true, true);
+        if (extended_dinosaurs_shown) {
+            show_all_contemporaries();
+        }
+    }
+}
 
 function search_dinosaurs_cancel() {
     // This sets a parameter in the data that the "backend"'s code operates on that tells it to stop at the next iteration.
@@ -42,7 +53,7 @@ function render_dino_locations_list(dino_data) {
         if (typeof(location_name) == "object") {
             location_names.push(location_name[0]);
         } else {
-            location_names.push(location_name);
+            location_names.push(place_name_to_place_selection_button(location_name));
         }
     }
     let s = location_names.join(", ");
@@ -53,7 +64,7 @@ function render_dino_locations_list(dino_data) {
             if (typeof(location_name) == "object") {
                 location_names.push(location_name[0]);
             } else {
-                location_names.push(location_name);
+                location_names.push(place_name_to_place_selection_button(location_name));
             }
         }
         s += location_names.join(", ");
@@ -109,11 +120,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
             _dinos[name].wikipedia + "'>" + name + "</a> " +
             "<small>(ate:&nbsp;<span title='" + diet_to_mouseover[_dinos[name].eats] +
             "'>" + diet_to_emoji[_dinos[name].eats].replaceAll(" ", "&nbsp;") + "</span>)</small><br>" +
-            (
-                year_max == year_min
-                ? ("<small>lived " + year_max)
-                : ("<small>lived from " + year_max + " to " + year_min)
-            ) +
+            "<small>lived " + time_to_time_links(year_min, year_max) +
             " mil years ago</small><br>" +
             (
                 show_locations
@@ -132,11 +139,15 @@ function show_all_contemporaries() {
     let outerHTML = "Dinosaurs that lived within your selected time span in other areas of the world:<br><br>"
     outerHTML += generate_html_list_of_dinosaurs(_dinos_in_tree, true);
     show_all_contemporaries_button.outerHTML = outerHTML;
+    extended_dinosaurs_shown = true;
 }
 
-function finish_search_dinosaurs(success) {
+function finish_search_dinosaurs(success, is_reload) {
     // This function is called by the "backend" when the search for dinosaurs that was started with search_dinosaurs is finished.
     // It displays the results and/or appropriate error messages
+    if (!is_reload) {
+        extended_dinosaurs_shown = false;
+    }
     if (success) {
         display_error_text("dino_search_error_text", "");
         dino_results = document.getElementById("dino_results");
@@ -179,6 +190,7 @@ function finish_search_dinosaurs(success) {
             innerHTML += "<button id='show_all_contemporaries_button' type='button' onClick='show_all_contemporaries();'>Show all contemporary dinosaurs</button>";
         }
         dino_results.innerHTML = innerHTML;
+        search_finished_running_once = true;
     } else {
         display_error_text("dino_search_error_text", (
             _search_data.cancel
@@ -187,5 +199,7 @@ function finish_search_dinosaurs(success) {
         ));
     }
     // unlock interfaces:
-    unlock_location_selection_functionalities();
+    if (!is_reload) {
+        unlock_location_selection_functionalities();
+    }
 }

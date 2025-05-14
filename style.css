@@ -116,6 +116,15 @@ button:hover:not(:disabled), select:hover:not(:disabled) {
     }
 }
 
+a.search_param_link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a.search_param_link:hover {
+    text-decoration: underline;
+}
+
 h1 {
     font-size: 2.5em;
     text-align: center;
