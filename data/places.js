@@ -242,25 +242,6 @@ var _places = {
     ["French Guiana"]: {
         id: 1260551,
     },
-    /*["South America"]: {
-        // South America is on OSM, but only as a node, not as a relation, so we need to reconstruct it
-        id: [
-            286393, // Argentina
-            252645, // Bolivia
-            59470, // Brazil
-            167454, // Chile
-            120027, // Colombia
-            108089, // Ecuador
-            // ^(this includes some islands that may not have yet existed during the mesozoic (or mayhave been unconnected to the mainland), but so be it)
-            287083, // Guyana
-            287077, // Paraguay
-            288247, // Peru
-            287082, // Suriname
-            287072, // Uruguay
-            272644, // Venezuela
-            1260551, // French Guiana
-        ]
-    },*/
 
     // Asia:
     ["China"]: {

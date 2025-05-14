@@ -63,10 +63,8 @@ function onLocationSearchSuccess(responseText) {
         result.display_name = (
             "(" + addr_type_capitalized + ") "
             + json_data[i].display_name
-            + (result.is_relation ? " (entire area)" : " (center position)")
-            // + (result.is_relation ? " -> Area" : " -> Position")
+            + (_area_groups_by_id[result.id] ? " (optimized area)" : (result.is_relation ? " (entire area)" : " (center position)"))
         );
-        // result.display_name_short = json_data[i].name + (result.is_relation ? " (entire area)" : " (center position)");
     }
     let found_new_results = results.length > 0;
     // add to html dropdown list, or replace the html dropdown list with our new results:
