@@ -4,40 +4,44 @@ var [UNKNOWN_DIET, INSECTIVORE, CARNIVORE, HERBIVORE, OMNIVORE, HERBIVORE_OR_OMN
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 var _continents = {
-    ["South America"]: [ // TODO: This might've been used too liberally in the .lies-attribute; go through its mentions to fix that
-        "Argentina",
-        "Bolivia",
-        "Brazil",
-        "Chile",
-        "Colombia",
-        "Ecuador",
-        // ^(this includes some islands that may not have yet existed during the mesozoic (or may have been unconnected to the mainland), but so be it)
-        "Guyana",
-        "Paraguay",
-        "Peru",
-        "Suriname",
-        "Uruguay",
-        "Venezuela",
-        "French Guiana",
-    ],
-    ["Peninsular Spain"]: [
-        "Andalusia",
-        "Aragon",
-        "Asturias",
-        // "Balearic Islands",
-        "Basque Country",
-        // "Canary Islands",
-        "Cantabria",
-        "Castile and León",
-        "Castilla-La Mancha",
-        "Catalonia",
-        "Extremadura",
-        "Galicia",
-        "La Rioja",
-        "Madrid",
-        "Navarre",
-        "Valencia",
-    ]
+    ["South America"]: {
+        components: [ // TODO: This might've been used too liberally in the .lies-attribute; go through its mentions to fix that
+            "Argentina",
+            "Bolivia",
+            "Brazil",
+            "Chile",
+            "Colombia",
+            "Ecuador",
+            // ^(this includes some islands that may not have yet existed during the mesozoic (or may have been unconnected to the mainland), but so be it)
+            "Guyana",
+            "Paraguay",
+            "Peru",
+            "Suriname",
+            "Uruguay",
+            "Venezuela",
+            "French Guiana",
+        ]
+    },
+    ["Peninsular Spain"]: {
+        components: [
+            "Andalusia",
+            "Aragon",
+            "Asturias",
+            // "Balearic Islands",
+            "Basque Country",
+            // "Canary Islands",
+            "Cantabria",
+            "Castile and León",
+            "Castilla-La Mancha",
+            "Catalonia",
+            "Extremadura",
+            "Galicia",
+            "La Rioja",
+            "Madrid",
+            "Navarre",
+            "Valencia",
+        ]
+    },
     // Ibero-Armorican Island
 }
 
@@ -1942,7 +1946,7 @@ function parse_dino_lives_in_continent_names() {
                         let new_lives_list = [];
                         for (let place2 of dino_entry[attr]) {
                             if (typeof(place2) == "object") {
-                                for (let place3 of _continents[place2[0]]) {
+                                for (let place3 of _continents[place2[0]].components) {
                                     new_lives_list.push(place3);
                                 }
                             } else {

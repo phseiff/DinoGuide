@@ -51,7 +51,7 @@ function render_dino_locations_list(dino_data) {
     let location_names = [];
     for (let location_name of (dino_data.lives_written || dino_data.lives)) {
         if (typeof(location_name) == "object") {
-            location_names.push(location_name[0]);
+            location_names.push(place_name_to_place_selection_button(location_name[0]));
         } else {
             location_names.push(place_name_to_place_selection_button(location_name));
         }
@@ -62,7 +62,7 @@ function render_dino_locations_list(dino_data) {
         location_names = [];
         for (let location_name of (dino_data.lives_extended_written || dino_data.lives_extended)) {
             if (typeof(location_name) == "object") {
-                location_names.push(location_name[0]);
+                location_names.push(place_name_to_place_selection_button(location_name[0]));
             } else {
                 location_names.push(place_name_to_place_selection_button(location_name));
             }

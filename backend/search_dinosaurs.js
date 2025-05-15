@@ -17,6 +17,12 @@ function coordinates_are_inside_area(coordinates, id, on_load) {
             + "relation(" + id + ")(pivot:in);\n"
             + "out meta;"
         )
+    } else if (coordinates.ids) {
+        body = "area(" + (3600000000 + id) + ")->.a;\n("
+        for (const id of coordinates.ids) {
+            body += "relation(" + id + ")(area.a);\n"
+        }
+        body += ")\nout geom;\n"
     } else if (coordinates.id) {
         body = (
             "area(" + (3600000000 + id) + ")->.a;\n"
@@ -111,9 +117,9 @@ function search_dinosaurs_in_place(place_entry, coordinates, _places) {
         add_to_cache(coordinates, place_entry.id, hit);
     }
 
-    if (coordinates.id) {
+    if (coordinates.id || coordinates.ids) {
         // First we check if our location is identical to the potential dinosaur location:
-        if (coordinates.id == place_entry.id) {
+        if (coordinates.id == place_entry.id || (coordinates.ids && coordinates.ids.includes(place_entry.id))) {
             mark_place_entry_hit(true, true);
             window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
             return true;
@@ -121,14 +127,36 @@ function search_dinosaurs_in_place(place_entry, coordinates, _places) {
     
         // If our location is different (by ID) from the dinosaur location and its parents, and in the same area group
         // then we can conclude that there is an intersection between both if and only if our location is a descendant
-        // of the dinosaur location.
+        // of the dinosaur location:
+
+        // simplified version for user location consisting of only 1 id
         else if (
-            _area_groups_by_id[coordinates.id]
+            !coordinates.ids
+            && _area_groups_by_id[coordinates.id]
             && _area_groups_by_id[coordinates.id] == _area_groups_by_id[place_entry.id]
         ) {
             mark_place_entry_hit(place_entry.descendents.has(coordinates.id));
             window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
             return true;
+        // complex version for multi-id user locations
+        } else if (coordinates.ids) {
+            let applicable_area_groups = new Set();
+            for (const id of coordinates.ids) {
+                applicable_area_groups.add(_area_groups_by_id[id]);
+            }
+            applicable_area_groups.add(_area_groups_by_id[place_entry.id]);
+            if (applicable_area_groups.size == 1) { // all same id
+                for (const id of coordinates.ids) {
+                    if (place_entry.descendents.has(id)) {
+                        mark_place_entry_hit(true);
+                        window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
+                        return true;
+                    }
+                }
+                mark_place_entry_hit(false);
+                window.setTimeout(function() {search_dinosaurs_in_places_tree(_places, coordinates);}, 1);
+                return true;
+            }
         }
     }
 

@@ -2,6 +2,18 @@
 // Place stuff
 
 function select_dino_place_name(place_name) {
+    if (_continents[place_name]) {
+        let location = {
+            display_name: place_name + " (combinatory area)",
+            is_relation: true,
+            ids: [],
+        }
+        for (const component_name of _continents[place_name].components) {
+            location.ids.push(_places[component_name].id);
+        }
+        setLocation(location);
+        return;
+    }
     setLocation({
         display_name: place_name + " (optimized area)",
         is_relation: true,
