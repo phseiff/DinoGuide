@@ -29,6 +29,7 @@ function onLocationSelectionChoice() {
         is_relation: _location_dropdown_selection[index].is_relation,
         id: id,
         ids: _location_dropdown_selection[index].ids,
+        place_name: _location_dropdown_selection[index].place_name,
         latitude: _location_dropdown_selection[index].latitude,
         longitude: _location_dropdown_selection[index].longitude,
     });
@@ -48,6 +49,7 @@ function onLocationSearchSuccess(responseText) {
             if (continent_name.toLowerCase().includes(_last_location_search_query.toLowerCase())) {
                 results.push({
                     display_name: continent_name + " (combinatory area)",
+                    place_name: continent_name,
                     is_relation: true,
                     ids: get_ids_from_continent(continent_name),
                 })
@@ -81,8 +83,9 @@ function onLocationSearchSuccess(responseText) {
         result.display_name = (
             "(" + addr_type_capitalized + ") "
             + json_data[i].display_name
-            + (_area_groups_by_id[result.id] ? " (optimized area)" : (result.is_relation ? " (entire area)" : " (center position)"))
+            + (_place_names_by_id[result.id] ? " (optimized area)" : (result.is_relation ? " (entire area)" : " (center position)"))
         );
+        result.place_name = _place_names_by_id[result.id];
     }
     let found_new_results = results.length > 0;
     // add to html dropdown list, or replace the html dropdown list with our new results:

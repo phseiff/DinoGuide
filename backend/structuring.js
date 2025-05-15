@@ -5,6 +5,7 @@ function build_places_tree(_places) {
         let place_entry = _places[key];
         // add id and area group to _area_groups_by_id.
         _area_groups_by_id[place_entry.id] = place_entry.area_group || "government_borders";
+        _place_names_by_id[place_entry.id] = key;
         if (place_entry.is_in) {
             let parent = _places[place_entry.is_in];
             // create .contains attribute in parent

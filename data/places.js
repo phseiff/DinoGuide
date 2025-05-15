@@ -301,3 +301,4 @@ var _places = {
 // A mapping from IDs to area group names.
 
 _area_groups_by_id = {};
+_place_names_by_id = {};

@@ -42,7 +42,7 @@ var _continents = {
             "Valencia",
         ]
     },
-    ["Hațeg Island"]: {
+    ["Hateg Island"]: {
         components: [
             "Romania",
             // wikipedia says that Hateg Island corresponds to Hunedoara County,
@@ -82,39 +82,7 @@ var _dinos = {
         year_max: 201.3, // which year is max and which is min is based on the absolute value of the year.
         year_min: 190.8, // ofc the year value is in millions of years.
         eats: HERBIVORE,
-        /*
-        lives:
-            This is the area that the animal is known to have lived in, based on where it was found.
-            This might be the exact location where it was found, or a wider area based on multiple finds,
-            but it attempts to be a conservative estimate.
-            We attempt not to undershoot the area (e.g. if the fossils are known from only one location
-            that happens to be known for exceptionally good fossil preservation, we will assume a wider
-            distribution than just this one place), but also attempt not to overshoot the location (i.e.
-            we won't assume that an animal found in only one location lived in every place that was
-            connected to that place by land).
-            This list HAS to contain only places that exist in the _places table. Things like rock formations
-            that are not present on OSM (and therefore not in the _places table either) can not be in the
-            `lives` list.
-            The `lives` list HAS to be present for every entry.
-        lives_precise:
-            An optional list similar to `lives` that is more restricted to the actual area where the fossil was found.
-            This might be the name of the relevant rock formations, or the name of individual US states tha fossils were
-            found in if the genum was found in multiple US states.
-            In cases where the `lives` list contains a value judgement that assumes a wider area than what can be derived
-            from fossil found locations, the `lives_precise` list HAS to be defined.
-            Otherwise, it does not have to be present, but CAN be present.
-            The entries in the `lives_precise`-list CAN be present in the _places table, but don't have to be.
-        lives_extended:
-            Planned feature that might not make it into the final product.
-            This list reflects the places that the animal could have reached by foot, at the time that it lived,
-            without swimming, if it started its journey at locations where its fossils were found.
-            If there are specific reasons to assume that the animal did not leave certain regions (e.g. we know many fossils
-            from different fossil sites all over southern Gondwana, but not over northern Gondwana), then these reasons
-            override the approach escribed above.
-            The `lives_extended`-list is intended to be a maximum realistic estimate of where the animal could have lived.
-            The entries in the `lives_extended`-list HAVE to be present in the _places table.
-            The `lives_extended`-list is optional.
-        */
+        /* see contribution_guidelines.md for info on the different lives attributes */
         lives_precise: ["Elliot Formation"],
         lives: ["South Africa", "Lesotho"],
         wikipedia: "https://en.wikipedia.org/wiki/Aardonyx",

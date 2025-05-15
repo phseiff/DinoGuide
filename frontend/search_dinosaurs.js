@@ -114,6 +114,11 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         let name = dinosaur_names[i];
         let year_min = _dinos[name].year_min_precise || _dinos[name].year_min;
         let year_max = _dinos[name].year_max_precise || _dinos[name].year_max;
+        let dino_locations = (_dinos[name].lives_written || _dinos[name].lives);
+        let user_location_identical_to_dino_location = (
+            dino_locations.length == 1 &&
+            (typeof(dino_locations[0]) == "string" ? dino_locations[0] : dino_locations[0][0]) == _data.location_coordinates.place_name
+        );
         html += (
             "<span name='dinosaurs:" + name + "'>" +
             "<a rel='noopener noreferrer' target='_blank' href='" +
@@ -123,7 +128,7 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
             "<small>lived " + time_to_time_links(year_min, year_max) +
             " mil years ago</small><br>" +
             (
-                show_locations
+                (!user_location_identical_to_dino_location)
                 ? ("<small>lived in: " + render_dino_locations_list(_dinos[name]) + "</small><br>")
                 : ""
             ) +

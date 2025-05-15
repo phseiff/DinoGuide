@@ -5,12 +5,14 @@ function select_dino_place_name(place_name) {
     if (_continents[place_name]) {
         setLocation({
             display_name: place_name + " (combinatory area)",
+            place_name: place_name,
             is_relation: true,
             ids: get_ids_from_continent(place_name),
         });
     } else {
         setLocation({
             display_name: place_name + " (optimized area)",
+            place_name: place_name,
             is_relation: true,
             id: _places[place_name].id,
         });
