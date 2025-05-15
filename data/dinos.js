@@ -42,6 +42,14 @@ var _continents = {
             "Valencia",
         ]
     },
+    ["Hațeg Island"]: {
+        components: [
+            "Romania",
+            // wikipedia says that Hateg Island corresponds to Hunedoara County,
+            // but Hunedoara County is only like 1/10th as big as Hateg Island,
+            // so we're keeping it conservative here.
+        ]
+    }
     // Ibero-Armorican Island
 }
 
@@ -337,6 +345,7 @@ var _dinos = {
         wikipedia: "https://en.wikipedia.org/wiki/Aerosteon",
     },
     // only European dinosaurs below this line
+    // Agrosaurus macgillivrayi: dubious genus
     ["Ajkaceratops kozmai"]: {
         year_max: 85,
         year_min: 85,
@@ -473,6 +482,15 @@ var _dinos = {
         lives_precise: ["Alcobaça Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Aviatyrannis",
     },
+    ["Balaur bondoc"]: {
+        // might be a synonym of Elopteryx
+        year_max: 70,
+        year_min: 70,
+        eats: HERBIVORE_OR_OMNIVORE,
+        lives: [continent("Hateg Island")],
+        lives_exclusively: true,
+        wikipedia: "https://en.wikipedia.org/wiki/Balaur_bondoc",
+    },
     ["Barilium dawsoni"]: {
         year_max: 140,
         year_min: 140,
@@ -497,6 +515,7 @@ var _dinos = {
         lives_precise: ["Maastricht Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Betasuchus",
     },
+    // Bihariosaurus bauxiticus: invalid genus / nomen dubium
     ["Blasisaurus canudoi"]: {
         year_max: 66,
         year_min: 66,
@@ -608,6 +627,14 @@ var _dinos = {
         lives: ["England"],
         lives_precise: ["Forest Marble Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Cardiodon",
+    },
+    ["Ceratosaurus sp. (of unknown species)"]: {
+        year_max: 153,
+        year_min: 148,
+        eats: CARNIVORE,
+        lives: ["Portugal"], // <- theorized to be Ceratosaurus nasicornis
+        lives_extended: ["Switzerland", "Uruguay", "Tanzania"], // <- only teeth, and thus questioned
+        wikipedia: "https://en.wikipedia.org/wiki/Ceratosaurus",
     },
     ["Ceratosuchops inferodios"]: {
         year_max: 128,
@@ -722,6 +749,13 @@ var _dinos = {
         lives_precise: ["Castrillo de la Reina Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Demandasaurus",
     },
+    ["Dinheirosaurus lourinhanensis"]: {
+        year_max: 149.2, // wikipedia says "early Tithonian"
+        year_min: 147.2,
+        eats: HERBIVORE,
+        lives: ["Portugal"],
+        wikipedia: "https://en.wikipedia.org/wiki/Dinheirosaurus",
+    },
     // Dinodocus mackesoni: nomen dubium
     /* nomen dubium: ["Dolichosuchus cristatus"]: {
         year_max: 208,
@@ -810,6 +844,14 @@ var _dinos = {
         lives: ["Germany"],
         lives_precise: ["Löwenstein Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Efraasia",
+    },
+    ["Elopteryx nopcsai"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE_OR_OMNIVORE, // <- judging by Balaur bondoc
+        lives: [continent("Hateg Island")],
+        lives_exclusively: true,
+        wikipedia: "https://en.wikipedia.org/wiki/Elopteryx",
     },
     ["Emausaurus ernsti"]: {
         year_max: 183,
@@ -949,6 +991,17 @@ var _dinos = {
         lives_precise: ["Kimmeridge Clay"],
         wikipedia: "https://en.wikipedia.org/wiki/Gigantosaurus",
     },
+    ["Gresslyosaurus ingens (and other species)"]: {
+        // debated to be a plateosaurus synonym by some.
+        // we don't differentiate between the individual species here bc c'mon, they just stomped out a new species for every
+        // now specimen they found back then, and also i can't find which species corresponds to which countries on wikipedia.
+        // Also RIP Amanz Gressly
+        year_max: 214,
+        year_min: 204,
+        eats: HERBIVORE,
+        lives: ["Metropolitan France", "Germany", "Norway", "Greenland", "Switzerland"],
+        wikipedia: "https://en.wikipedia.org/wiki/Gresslyosaurus",
+    },
     ["Haestasaurus becklesii"]: {
         year_max: 140,
         year_min: 140,
@@ -1057,6 +1110,15 @@ var _dinos = {
         lives: ["Germany"],
         lives_precise: ["Painten Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Juravenator",
+    },
+    ["Koutalisaurus kohlerorum"]: {
+        // no longer invalid according to a 2020 study
+        year_max: 67.5,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: [continent("Peninsular Spain")],
+        lives_precise: ["Tremp Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Koutalisaurus",
     },
     ["Lexovisaurus durobrivensis"]: {
         year_max: 165.7,
@@ -1350,6 +1412,16 @@ var _dinos = {
         lives_precise: ["Lulworth Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Owenodon",
     },
+    ["Pachysauriscus ajax"]: {
+        year_max: 227,
+        year_min: 204,
+        eats: HERBIVORE,
+        lives: ["Germany"], // technically only the southern half since the northern half was flooded,
+                            // but i think we allow dinosaurs to "overlap" into flooded areas
+        // according to wikipedia, "Although previously synonymized with Plateosaurus,
+        // a number of papers published since the early 2000s have cast doubt on this synonymy."
+        wikipedia: "https://en.wikipedia.org/wiki/Pachysauriscus",
+    },
     ["Paludititan nalatzensis"]: {
         year_max: 70.6,
         year_min: 66,
@@ -1357,6 +1429,13 @@ var _dinos = {
         lives: ["Romania"],
         lives_precise: ["Sânpetru Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Paludititan",
+    },
+    ["Pantydraco caducus"]: {
+        year_max: 209,
+        year_min: 201,
+        eats: OMNIVORE,
+        lives: ["Wales"], // an island that includes a slither of wales, but idk how to model that rn
+        wikipedia: "https://en.wikipedia.org/wiki/Pantydraco",
     },
     ["Pararhabdodon isonensis"]: {
         year_max: 66,
@@ -1463,6 +1542,7 @@ var _dinos = {
         lives_precise: ["Wessex Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Polacanthus",
     },
+    // Polacanthoides: invaid species
     ["Portellsaurus sosbaynati"]: {
         year_max: 130,
         year_min: 129,
@@ -1560,6 +1640,14 @@ var _dinos = {
         lives_precise: ["Villalba de la Sierra Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Rhabdodon",
     },
+    ["Rhadinosaurus alcimus"]: {
+        // might be synonym to Struthiosaurus
+        year_max: 84.9,
+        year_min: 70.6,
+        eats: HERBIVORE,
+        lives: ["Austria"],
+        wikipedia: "https://en.wikipedia.org/wiki/Rhadinosaurus",
+    },
     ["Riabininohadros weberae"]: {
         year_max: 72,
         year_min: 66,
@@ -1656,6 +1744,13 @@ var _dinos = {
         lives_precise: ["Golmayo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Soriatitan",
     },
+    ["Stegosaurus sp. (unknown species)"]: {
+        year_max: 155,
+        year_min: 145,
+        eats: HERBIVORE,
+        lives: ["Portugal"],
+        wikipedia: "https://en.wikipedia.org/wiki/Stegosaurus",
+    },
     ["Stenopelix valdensis"]: {
         year_max: 140,
         year_min: 140,
@@ -1696,6 +1791,7 @@ var _dinos = {
         lives_precise: ["Argiles et Grès à Reptiles Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Struthiosaurus",
     },
+    // Suchosaurus: probably synonymous with baryonyx
     ["Syngonosaurus macrocercus"]: {
         year_max: 105,
         year_min: 100,
@@ -1819,6 +1915,14 @@ var _dinos = {
         lives_precise: ["Villar del Arzobispo Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Turiasaurus",
     },
+    ["Valdoraptor oweni"]: {
+        // valid genus according to Darren Naish in 2007 (source: wikipedia)
+        year_max: 136,
+        year_min: 136,
+        eats: CARNIVORE,
+        lives: ["England"],
+        wikipedia: "https://en.wikipedia.org/wiki/Valdoraptor",
+    },
     ["Valdosaurus canaliculatus"]: {
         year_max: 140,
         year_min: 121,
@@ -1891,6 +1995,14 @@ var _dinos = {
         lives: ["Metropolitan France"],
         lives_precise: ["Calcaires de Clerval"],
         wikipedia: "https://en.wikipedia.org/wiki/Vouivria",
+    },
+    ["Wellnhoferia grandis"]: {
+        // might be synonym to Archaeopteryx lithographica according to 2007 study
+        year_max: 150,
+        year_min: 150,
+        eats: CARNIVORE,
+        lives: ["Germany"],
+        wikipedia: "https://en.wikipedia.org/wiki/Wellnhoferia",
     },
     ["Wiehenvenator albati"]: {
         year_max: 166,

@@ -50,14 +50,17 @@ var _places = {
     ["Egypt"]: {
         id: 1473947,
     },
+    ["Lesotho"]: {
+        id: 2093234,
+    },
     ["Morocco"]: {
         id: 3630439,
     },
     ["South Africa"]: {
         id: 87565,
     },
-    ["Lesotho"]: {
-        id: 2093234,
+    ["Tanzania"]: {
+        id: 195270,
     },
 
     // Europe:
@@ -257,6 +260,9 @@ var _places = {
     // North America:
     ["Mexico"]: {
         id: 114686,
+    },
+    ["Greenland"]: {
+        id: 2184073,
     },
 
     // USA:
