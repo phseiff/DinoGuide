@@ -18,7 +18,7 @@ function onLocationSelectionChoice() {
     var [index, id] = selected_value.split(" ");
     index = Number(index);
     id = Number(id);
-    if (_location_dropdown_selection[index].id != id) {
+    if (_location_dropdown_selection[index].id && _location_dropdown_selection[index].id != id) {
         // having the id to check against saveguards us against problems
         //  caused by users clicking on an option whilst onLocationSearchSuccess
         //  is running. Which should be impossible, but better safe than sorry.
@@ -28,6 +28,7 @@ function onLocationSelectionChoice() {
         display_name: _location_dropdown_selection[index].display_name,
         is_relation: _location_dropdown_selection[index].is_relation,
         id: id,
+        ids: _location_dropdown_selection[index].ids,
         latitude: _location_dropdown_selection[index].latitude,
         longitude: _location_dropdown_selection[index].longitude,
     });
@@ -38,14 +39,31 @@ function onLocationSelectionChoice() {
 function onLocationSearchSuccess(responseText) {
     // parse json
     let json_data = JSON.parse(responseText);
-    // build selection
-    if (json_data.length == 0) {
-        display_error_text("device_location_error_text", "No locations fitting the search term found.");
-        return;
-    }
-    display_error_text("device_location_error_text", "");
     // build data structure
     var results = [];
+    let is_repeat = _last_location_search_query === _2nd_to_last_location_search_query;
+    // custom continents
+    if (!is_repeat) {
+        for (let continent_name in _continents) {
+            if (continent_name.toLowerCase().includes(_last_location_search_query.toLowerCase())) {
+                results.push({
+                    display_name: continent_name + " (combinatory area)",
+                    is_relation: true,
+                    ids: get_ids_from_continent(continent_name),
+                })
+            }
+        }
+    }
+    // failure if nothing found
+    display_error_text("device_location_error_text", "");
+    if (json_data.length == 0 && results.length == 0) {
+        if (is_repeat) {
+            display_error_text("device_location_error_text", "No further locations fitting the search term found.");
+        } else {
+            display_error_text("device_location_error_text", "No locations fitting the search term found.");
+        }
+    }
+    // nominatem search results
     for (var i=0; i<json_data.length; i+=1) {
         var result = {};
         results.push(result);
@@ -123,9 +141,11 @@ function searchLocation(repeat_search) {
     if (_last_location_search_query === _2nd_to_last_location_search_query) {
         banned_ids = "&exclude_place_ids=";
         for (let i=0; i<_location_dropdown_selection.length; i++) {
-            banned_ids += _location_dropdown_selection[i].place_id;
-            if (i < _location_dropdown_selection.length-1) {
-                banned_ids += ",";
+            if (_location_dropdown_selection[i].place_id) {
+                banned_ids += _location_dropdown_selection[i].place_id;
+                if (i < _location_dropdown_selection.length-1) {
+                    banned_ids += ",";
+                }
             }
         }
     }

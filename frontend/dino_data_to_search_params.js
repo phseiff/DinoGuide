@@ -3,22 +3,18 @@
 
 function select_dino_place_name(place_name) {
     if (_continents[place_name]) {
-        let location = {
+        setLocation({
             display_name: place_name + " (combinatory area)",
             is_relation: true,
-            ids: [],
-        }
-        for (const component_name of _continents[place_name].components) {
-            location.ids.push(_places[component_name].id);
-        }
-        setLocation(location);
-        return;
+            ids: get_ids_from_continent(place_name),
+        });
+    } else {
+        setLocation({
+            display_name: place_name + " (optimized area)",
+            is_relation: true,
+            id: _places[place_name].id,
+        });
     }
-    setLocation({
-        display_name: place_name + " (optimized area)",
-        is_relation: true,
-        id: _places[place_name].id,
-    });
 }
 
 function place_name_to_place_selection_button(place_name) {

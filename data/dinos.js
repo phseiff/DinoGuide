@@ -49,6 +49,14 @@ function continent(continent_name) {
     return [continent_name];
 }
 
+function get_ids_from_continent(continent_name) {
+    let ids = [];
+    for (const place_name of _continents[continent_name].components) {
+        ids.push(_places[place_name].id);
+    }
+    return ids;
+}
+
 var _dinos = {
     /* template:
     ["species"]: {
