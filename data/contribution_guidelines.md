@@ -90,3 +90,14 @@ How to fill the year_min and year_max attribute:
 - if our source (by default wikipedia) says "lived xyz million years ago" rather than "lived from xy million years ago to yz million years ago", then you treat that as "lived from xyz to xyz million years ago."
 - if a source says something like "lived xyz million years ago" (point in time rather than time span) or "lived in the [name of a period of time such as 'Late Cretaceous']" (vague by virtue of being normed towards a nameable area), then we consider this claim "vague". if wikipedia's claim is vague, but its scientific source it cites (or any other scientific source) is not, then we use said source rather than wikipedia. the same applies as well if wikipedia is blatantly wrong, ofc.
 - if the above case applies, you must add a comment explaining why (in a way that does not rely on the reader having read the text you are reading right now). said comment must include your sources, ideally in a way resistant to link rot.
+
+### img
+
+This optional attribute contains a wikimedia link (of the pattern https://en.wikipedia.org/wiki/File:smthsmth.png) to an image of the species or genus.
+The image should be a piece of (creative commons) paleoart depicting the animal when it was alive, as if often present in wikipedia articles.
+Outdated reconstructions are acceptable, unless they reconstruct the animal as a wrong category of animal in a way that significantly affects is morphology in a misleading way (e.g. a reconstruction of an ankylosaur as a crocodilomorph, or this depiction (https://en.wikipedia.org/wiki/File:Afromimus_LM_(gray).png) of Afromimus as a noasaurid.)
+Colorful illustrations are preferred.
+Whether the illustration shows the animal on a neutral background or in its natural (correct) habitat is neutral (but a correct habitat depiction can be as much of a bonus as a neutral and well-contrastd background can be).
+If no illustration exists, a depiction of the animal's silhouette (e.g. in a human vs animal size comparison image) is acceptable.
+Skeletal depictions or depictions of remains/finds are not acceptable, since DinoGuide is supposed to show people information about past ecosystems (or our reconstruction/idea of them) rather than of what remains of them.
+If no fitting illustration exists on wikimedia, the img-attribute can be left out (not empty!).

@@ -45,6 +45,7 @@ function initialize_from_cookies() {
     document.getElementById("select_dino_ordering").value = _data.dino_display_settings.sort_by;
     document.getElementById("split_dinos_by_certainty").checked = _data.dino_display_settings.split_dinos_by_certainty;
     document.getElementById("simplify_locations").checked = _data.dino_display_settings.simplify_locations;
+    document.getElementById("show_wikipedia_images").checked = _data.dino_display_settings.show_wikipedia_images;
 }
 
 // Function to save to cookies:
@@ -60,6 +61,7 @@ let default_dino_display_settings = {
     shown: false,
     split_dinos_by_certainty: true,
     simplify_locations: true,
+    show_wikipedia_images: false,
     sort_by: "name",
 }
 var _data = {

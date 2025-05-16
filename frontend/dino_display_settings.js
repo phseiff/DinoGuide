@@ -20,6 +20,11 @@ function toggle_simplify_dino_locations() {
     reload_dinosaur_display_if_needed();
 }
 
+function toggle_show_wikipedia_images() {
+    _data.dino_display_settings.show_wikipedia_images = document.getElementById("show_wikipedia_images").checked;
+    reload_dinosaur_display_if_needed();
+}
+
 function select_dino_ordering_method() {
     let ordering_method = document.getElementById("select_dino_ordering").value;
     _data.dino_display_settings.sort_by = ordering_method;

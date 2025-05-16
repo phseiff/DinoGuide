@@ -111,6 +111,11 @@ span.break_unit {
     display: inline-block;
 }
 
+img.dino_img {
+    width: 100%;
+    max-width: 300px;
+}
+
 input[type="text"], select, input[type="number"] {
     padding-left: 7px;
     margin-top: 5px;

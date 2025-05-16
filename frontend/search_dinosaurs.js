@@ -128,6 +128,13 @@ function generate_html_list_of_dinosaurs(dinosaur_names) {
             _dinos[name].wikipedia + "'>" + name + "</a> " +
             "<small>(ate:&nbsp;<span title='" + diet_to_mouseover[_dinos[name].eats] +
             "'>" + diet_to_emoji[_dinos[name].eats].replaceAll(" ", "&nbsp;") + "</span>)</small><br>" +
+            (
+                (_data.dino_display_settings.show_wikipedia_images && _dinos[name].img) ?
+                ("<img class='dino_img' src='" + 
+                encodeURI(_dinos[name].img.replace("/File:", "/Special:FilePath/")) +
+                "'><br>") :
+                ""
+            ) +
             "<small>lived " + time_to_time_links(year_min, year_max) +
             " mil years ago</small><br>" +
             (
