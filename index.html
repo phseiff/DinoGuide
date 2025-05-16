@@ -24,6 +24,7 @@
     <script src="frontend/dino_data_to_search_params.js"></script>
     <script src="frontend/search_dinosaurs.js"></script>
     <script src="frontend/switch_between_pages.js"></script>
+    <script src="frontend/dino_display_settings.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
@@ -187,10 +188,49 @@
     <label for="use_time_range">Select time span</label><br>
 
     <br>
-
-    <button id="search_dinosaurs_button" type="button" onclick="search_dinosaurs();">Show Dinosaurs!</button>
-    <button hidden="true" id="search_dinosaurs_cancel_button" type="button" onclick="search_dinosaurs_cancel();">Cancel</button><br>
+    <span class="display_settings_container">
+        <span>
+            <button id="search_dinosaurs_button" type="button" onclick="search_dinosaurs();">Show Dinosaurs!</button>
+            <button hidden="true" id="search_dinosaurs_cancel_button" type="button" onclick="search_dinosaurs_cancel();">Cancel</button><br>
+        </span>
+        <span id="dino_display_settings_hidden_mode">
+            <button id="open_display_settings" type="button" onclick="toggle_display_settings_vis(true);" alt="Show dino display settings"
+            title="Show dino display settings"></button>
+        </span>
+    </span>
     <label id="dino_search_error_text"></label>
+    <span id="dino_display_settings_shown_mode" hidden="true">
+        <hr>
+        <span class="display_settings_container">
+            <span>
+                <span class="break_unit">
+                    Sort by
+                    <select id="select_dino_ordering" onchange="select_dino_ordering_method();">
+                        <option value="name">Name</option>
+                        <option value="appearance">Appearance Time</option>
+                        <option value="extinction">Extinction Time</option>
+                        <option value="diet">Diet</option>
+                    </select>
+                    |
+                </span>
+                <span class="break_unit">
+                    <input type="checkbox" id="split_dinos_by_certainty" onclick="toggle_split_dinosaurs_by_certainty();"
+                    title="Display certain and uncertain search results separately">
+                    <label for="split_dinos_by_certainty"
+                    title="Display certain and uncertain search results separately">Separate by certainity</label>
+                    |
+                </span>
+                <span class="break_unit">
+                    <input type="checkbox" id="simplify_locations" onclick="toggle_simplify_dino_locations();"
+                    title="Only display a dinosaur's locations if they deviate from the search parameter">
+                    <label for="simplify_locations"
+                    title="Only display a dinosaur's locations if they deviate from the search parameter">Simplify location info</label>
+                </span>
+            </span>
+            <button id="hide_display_settings" type="button" onclick="toggle_display_settings_vis(false);" alt="Hide dino display settings"
+            title="Hide dino display settings"></button>
+        </span>
+    </span>
 </form>
 
 <span id="dino_results"></span>

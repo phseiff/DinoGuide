@@ -35,6 +35,13 @@ function initialize_from_cookies() {
     parse_dino_lives_in_continent_names();
     roundDinoLivingTime();
     errorCheckDinoData();
+    // Dino display settings
+    if (_data.dino_display_settings.shown) {
+        toggle_display_settings_vis(_data.dino_display_settings.shown);
+    }
+    document.getElementById("select_dino_ordering").value = _data.dino_display_settings.sort_by;
+    document.getElementById("split_dinos_by_certainty").checked = _data.dino_display_settings.split_dinos_by_certainty;
+    document.getElementById("simplify_locations").checked = _data.dino_display_settings.simplify_locations;
 }
 
 // Function to save to cookies:
@@ -56,4 +63,11 @@ var _data = {
     use_time_range: false,
     million_years_ago_min: 66,
     million_years_ago_max: 66,
+
+    dino_display_settings: {
+        shown: false,
+        split_dinos_by_certainty: true,
+        simplify_locations: true,
+        sort_by: "name",
+    }
 }

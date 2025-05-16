@@ -76,7 +76,7 @@ function render_dino_locations_list(dino_data) {
 }
 
 
-function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
+function generate_html_list_of_dinosaurs(dinosaur_names) {
     // Returns a piece of html that represents a list of the dinosaurs in dinosaur_names,
     //  with added information like diet and time range.
     let html = "";
@@ -109,15 +109,18 @@ function generate_html_list_of_dinosaurs(dinosaur_names, show_locations) {
         [PISCIVORE_OR_CARNIVORE]: "Piscivore and/or carnivore",
     };
     dinosaur_names = Array.from(dinosaur_names);
-    dinosaur_names.sort();
+    dinosaur_names.sort(dinosaur_sorting);
     for (let i=0; i<dinosaur_names.length; i++) {
         let name = dinosaur_names[i];
         let year_min = _dinos[name].year_min_precise || _dinos[name].year_min;
         let year_max = _dinos[name].year_max_precise || _dinos[name].year_max;
         let dino_locations = (_dinos[name].lives_written || _dinos[name].lives);
         let user_location_identical_to_dino_location = (
+            _data.dino_display_settings.simplify_locations &&
             dino_locations.length == 1 &&
-            (typeof(dino_locations[0]) == "string" ? dino_locations[0] : dino_locations[0][0]) == _data.location_coordinates.place_name
+            !_dinos[name].lives_exclusively &&
+            (!_dinos[name].lives_extended || _dinos[name].lives_extended.length == 0) &&
+            (typeof(dino_locations[0]) == "string" ? dino_locations[0] : dino_locations[0][0]) === _data.location_coordinates.place_name
         );
         html += (
             "<span name='dinosaurs:" + name + "'>" +
@@ -142,7 +145,7 @@ function show_all_contemporaries() {
     // Shows all dinosaurs that lived at a certain time, not just at the selected location.
     let show_all_contemporaries_button = document.getElementById("show_all_contemporaries_button");
     let outerHTML = "Dinosaurs that lived within your selected time span in other areas of the world:<br><br>"
-    outerHTML += generate_html_list_of_dinosaurs(_dinos_in_tree, true);
+    outerHTML += generate_html_list_of_dinosaurs(_dinos_in_tree);
     show_all_contemporaries_button.outerHTML = outerHTML;
     extended_dinosaurs_shown = true;
 }
@@ -157,8 +160,12 @@ function finish_search_dinosaurs(success, is_reload) {
         display_error_text("dino_search_error_text", "");
         dino_results = document.getElementById("dino_results");
         innerHTML = "<hr>";
+        // .lived and .lived_extended fused
+        if (!_data.dino_display_settings.split_dinos_by_certainty && _search_data.dinos_found.size + _search_data.dinos_found_extended.size > 0) {
+            let dinos_found = new Set([..._search_data.dinos_found, ..._search_data.dinos_found_extended]);
+            innerHTML += generate_html_list_of_dinosaurs(dinos_found);
         // No Dinos alive at the time
-        if (_dinos_in_tree.size + _search_data.dinos_found.size + _search_data.dinos_found_extended.size == 0) {
+        } else if (_dinos_in_tree.size + _search_data.dinos_found.size + _search_data.dinos_found_extended.size == 0) {
             innerHTML += "No Dinosaurs (in DinoGuide's data set) are known to have lived at the time of the time you selected.";
         // Dinos found
         } else if (_search_data.dinos_found.size == 0) {

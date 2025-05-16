@@ -63,12 +63,49 @@ button {
     border-width: 1px;
 }
 
+span.display_settings_container {
+    display: flex;
+    justify-content: space-between;
+}
+
 button#search_dinosaurs_button, button#search_dinosaurs_cancel_button, button#show_more, button.return_to_main_page {
     line-height: 30px;
     font-size: 20px;
     margin-top: 15px;
     /*margin-bottom: 40px;
     float: left;*/
+}
+
+button#open_display_settings {
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 30px;
+    height: 30px;
+    margin-top: 15px;
+    /*margin-bottom: 40px;*/
+    background-image: url('images/gear.png');
+    background-size: cover;
+    float: right;
+}
+
+button#hide_display_settings {
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 30px;
+    height: 30px;
+    margin-top: 15px;
+    /*margin-bottom: 40px;*/
+    background-image: url('images/cross.png');
+    background-size: cover;
+    float: right;
+}
+
+span.break_unit {
+    display: inline-block;
 }
 
 input[type="text"], select, input[type="number"] {
