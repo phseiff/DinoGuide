@@ -36,6 +36,9 @@ function initialize_from_cookies() {
     roundDinoLivingTime();
     errorCheckDinoData();
     // Dino display settings
+    if (!_data.dino_display_settings) {
+        _data.dino_display_settings = default_dino_display_settings;
+    }
     if (_data.dino_display_settings.shown) {
         toggle_display_settings_vis(_data.dino_display_settings.shown);
     }
@@ -53,6 +56,12 @@ document.addEventListener('DOMContentLoaded', initialize_from_cookies, false);
 
 // Default values for everything that we store as cookies:
 var _search_is_ready = false;
+let default_dino_display_settings = {
+    shown: false,
+    split_dinos_by_certainty: true,
+    simplify_locations: true,
+    sort_by: "name",
+}
 var _data = {
     use_device_location: false,
     location_coordinates: {},
@@ -64,10 +73,5 @@ var _data = {
     million_years_ago_min: 66,
     million_years_ago_max: 66,
 
-    dino_display_settings: {
-        shown: false,
-        split_dinos_by_certainty: true,
-        simplify_locations: true,
-        sort_by: "name",
-    }
+    dino_display_settings: default_dino_display_settings,
 }

@@ -97,10 +97,13 @@ button#hide_display_settings {
     margin-bottom: 5px;
     width: 30px;
     height: 30px;
-    margin-top: 15px;
     /*margin-bottom: 40px;*/
     background-image: url('images/cross.png');
     background-size: cover;
+    bottom: 100%;
+}
+
+div.hide_display_settings_button_container {
     float: right;
 }
 

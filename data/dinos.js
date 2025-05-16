@@ -596,7 +596,7 @@ var _dinos = {
         lives_precise: ["Forest Marble Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Cardiodon",
     },
-    ["Ceratosaurus sp. (of unknown species)"]: {
+    ["Ceratosaurus sp. (unknown species)"]: {
         year_max: 153,
         year_min: 148,
         eats: CARNIVORE,
@@ -644,7 +644,7 @@ var _dinos = {
         lives_precise: ["Canjuers Lagerstätte", "Solnhofen Limestone"],
         wikipedia: "https://en.wikipedia.org/wiki/Compsognathus",
     },
-    ["Compsognathus sp. (of unknown species)"]: { // only teeth
+    ["Compsognathus sp. (unknown species)"]: { // only teeth
         year_max: 150.8,
         year_min: 145,
         eats: CARNIVORE,
@@ -1019,7 +1019,7 @@ var _dinos = {
         lives_precise: ["Grinstead Clay Formation", "Tunbridge Wells Sand Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Hylaeosaurus",
     },
-    ["Hylaeosaurus sp. (of unknown species)"]: {
+    ["Hylaeosaurus sp. (unknown species)"]: {
         year_max: 140,
         year_min: 136,
         eats: HERBIVORE,
@@ -1600,7 +1600,7 @@ var _dinos = {
         lives_precise: ["Gres de Saint-Chinian", "Marnes Rouges Inférieures Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Rhabdodon",
     },
-    ["Rhabdodon sp. (of unknown species)"]: {
+    ["Rhabdodon sp. (unknown species)"]: {
         year_max: 70,
         year_min: 66,
         eats: HERBIVORE,

@@ -70,7 +70,7 @@ function render_dino_locations_list(dino_data) {
         s += location_names.join(", ");
     }
     if (dino_data.lives_exclusively) {
-        s += " and nowhere else.";
+        s += " <span title='this species&apos; known living area is surrounded by oceans.'>and nowhere else.</span>";
     }
     return s;
 }
