@@ -39,7 +39,12 @@ so this approach should be okay.
 
 The key in `_dinos` must be the entire binominal name
 (unless no species has been named inside the genus, in which case the name of the genus suffices).
+
 "[genus name] sp. ([unnamed|unidentified] species)" also works.
+If it is unclear if the species is unidentified or unnamed (because it may or may not be a new species), the bracketed clarification can be left out.
+Multiple " sp." entries can be added with numbers (e.g. " (1)", " (2)" etc) behind them if (and only if) it makes sense to group different finds (or groups thereof) into separate entries.
+One example would be using one or more entries for different groups of finds that are believed to consist of one unknown species each, and use one additional entry as a wastebasket to hold finds that are debated to belong to the genus in its "lives_extended" attribute.
+
 Dubious genuses and nomen nudem may not be added to the list, except for a comment stating that the genus is dubious
 to show that it was not forgotten.
 

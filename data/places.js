@@ -56,6 +56,9 @@ var _places = {
     ["Morocco"]: {
         id: 3630439,
     },
+    ["Niger"]: {
+        id: 192786
+    },
     ["South Africa"]: {
         id: 87565,
     },
@@ -250,6 +253,12 @@ var _places = {
     ["China"]: {
         id: 270056, // This includes some islands outside of the mainland, which may be a problem for reasons already explained for (Ctrl+F) Ecuador.
     },
+    ["Japan"]: {
+        id: 382313,
+    },
+    ["Kyrgyzstan"]: {
+        id: 178009,
+    },
     ["Mongolia"]: {
         id: 161033,
     },
@@ -266,11 +275,23 @@ var _places = {
     },
 
     // USA:
-    ["Canada"] : {
-        id: 1428125,
+    ["Alaska"]: {
+        id: 1116270,
     },
     ["USA"]: {
         id: 148838,
+    },
+    ["California"]: {
+        id: 165475,
+        is_in: "USA",
+    },
+    ["Colorado"]: {
+        id: 161961,
+        is_in: "USA",
+    },
+    ["South Dakota"]: {
+        id: 161652,
+        is_in: "USA",
     },
     ["Utah"]: {
         id: 161993,
@@ -295,6 +316,21 @@ var _places = {
     ["Maryland"]: {
         id: 162112,
         is_in: "USA",
+    },
+    ["Missouri"]: {
+        id: 161638,
+        is_in: "USA",
+    },
+    ["New Mexico"]: {
+        id: 162014,
+        is_in: "USA",
+    },
+    // Canada
+    ["Canada"] : {
+        id: 1428125,
+    },
+    ["Alberta"]: {
+        id: 391186,
     },
 }
 

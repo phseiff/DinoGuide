@@ -48,9 +48,13 @@ var _continents = {
             // wikipedia says that Hateg Island corresponds to Hunedoara County,
             // but Hunedoara County is only like 1/10th as big as Hateg Island,
             // so we're keeping it conservative here.
+            // TODO: go through romanian dinosaurs to see if any need to be changed to Hateg
         ]
-    }
+    },
+
     // Ibero-Armorican Island
+
+    // Laramidia
 }
 
 function continent(continent_name) {
@@ -76,6 +80,7 @@ var _dinos = {
         lives_extended: [""], // optional
         lives_exclusively: true, // optional
         wikipedia: "",
+        img: "",
     },
     */
     ["Aardonyx celestae"]: {
@@ -131,6 +136,7 @@ var _dinos = {
         // seems a bit wild to me.
         lives: ["China"],
         wikipedia: "https://en.wikipedia.org/wiki/Abrosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Abrosaurus_head.jpg",
     },
     ["Abydosaurus mcintoshi"]: {
         year_max: 145.5,
@@ -312,23 +318,344 @@ var _dinos = {
         lives: ["Argentina"],
         wikipedia: "https://en.wikipedia.org/wiki/Aerosteon",
     },
-    // only European dinosaurs below this line
+    // Aetonyx palustris: dubious genus
+    ["Afromimus tenerensis"]: {
+        // wikipedia lists both 112 mil years ago and Aptian-Albian as time information,
+        // but since Aptian-Albian is quite a long/vague estimate for an animal known from only one specimen we're going with 112.
+        year_max: 112,
+        year_min: 112,
+        eats: CARNIVORE,
+        lives: ["Niger"],
+        wikipedia: "https://en.wikipedia.org/wiki/Afromimus",
+        // img: "https://en.wikipedia.org/wiki/File:Afromimus_LM_(gray).png",
+        // commented out bc it's a reconstruction based on wrong phylogenetic assuptions
+    },
+    ["Afrovenator abakensis"]: {
+        year_max: 167,
+        year_min: 161,
+        eats: CARNIVORE,
+        lives: ["Niger"],
+        wikipedia: "https://en.wikipedia.org/wiki/Afrovenator",
+        img: "https://en.wikipedia.org/wiki/File:Afrovenator_reconstruction.png",
+    },
+    // Agathaumas sylvestris: nomen dubium
+    // Aggiosaurus nicaeensis: turned out to be a crocodilomorph
+    ["Agilisaurus louderbacki"]: {
+        year_max: 168,
+        year_min: 164,
+        eats: HERBIVORE,
+        lives: ["China"],
+        wikipedia: "https://en.wikipedia.org/wiki/Agilisaurus",
+        img: "https://en.wikipedia.org/wiki/File:Agilisaurus_life_restoration.jpg",
+    },
+    // Agnosphitys cromhallensis: not a dinosaur
+    // Agrosaurus macgillivrayi: nomen dubium or junior synonym of Thecodontosaurus
+    ["Agujaceratops mariscalensis"]: {
+        year_max: 77,
+        year_min: 77,
+        eats: HERBIVORE,
+        lives: ["Texas"],
+        wikipedia: "https://en.wikipedia.org/wiki/Agujaceratops",
+        img: "https://en.wikipedia.org/wiki/File:Agujaceratops_life_restoration.jpg",
+    },
+    ["Agujaceratops mavericus"]: {
+        year_max: 77,
+        year_min: 77,
+        eats: HERBIVORE,
+        lives: ["Texas"],
+        wikipedia: "https://en.wikipedia.org/wiki/Agujaceratops",
+    },
+    ["Agustinia ligabuei"]: {
+        year_max: 116,
+        year_min: 108,
+        eats: HERBIVORE,
+        lives: ["Argentina"],
+        wikipedia: "https://en.wikipedia.org/wiki/Agustinia",
+        img: "https://en.wikipedia.org/wiki/File:Agustinia_reconstruction.png",
+    },
+    ["Ahshislepelta minor"]: {
+        year_max: 74.5,
+        year_min: 74.5,
+        eats: HERBIVORE,
+        lives: ["New Mexico"],
+        wikipedia: "https://en.wikipedia.org/wiki/Ahshislepelta",
+        img: "https://en.wikipedia.org/wiki/File:Ahshislepelta_LM.png",
+    },
+    ["Ahvaytum bahndooiveche"]: {
+        year_max: 230,
+        year_min: 230, // wikipedia says "~230"
+        eats: UNKNOWN_DIET, // <- we only know a leg bone
+        lives: ["Wyoming"],
+        wikipedia: "https://en.wikipedia.org/wiki/Ahvaytum",
+        img: "https://en.wikipedia.org/wiki/File:Ahvaytum_bahndooiveche.png",
+    },
+    // Airakoraptor: nomen nudem; refers to Kuru kulla
+    ["Heyuannia huangi"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE_OR_OMNIVORE,
+        lives: ["China"],
+        wikipedia: "https://en.wikipedia.org/wiki/Heyuannia",
+        img: "https://en.wikipedia.org/wiki/File:Heyuannia_and_eggs_nest.jpg",
+    },
+    ["Heyuannia yanshini"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE_OR_OMNIVORE,
+        lives: ["Mongolia"],
+        wikipedia: "https://en.wikipedia.org/wiki/Heyuannia",
+        img: "https://en.wikipedia.org/wiki/File:Ajancingenia_reconstruction.png",
+    },
     // Agrosaurus macgillivrayi: dubious genus
     ["Ajkaceratops kozmai"]: {
         year_max: 85,
-        year_min: 85,
-        eats: HERBIVORE,
+        year_min: 85, // ~85, according to wikipedia
+        eats: HERBIVORE, // <-- assumed because ornithischian
         lives: ["Hungary"],
         lives_precise: ["Csehbánya Formation"],
         wikipedia: "https://en.wikipedia.org/wiki/Ajkaceratops",
+        // outdated reconstruction as ceratopsian:
+        // img: "https://en.wikipedia.org/wiki/File:Ajkaceratops_NT.jpg",
+    },
+    ["Ajnabia odysseus"]: {
+        year_max: 68,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["Morocco"],
+        wikipedia: "https://en.wikipedia.org/wiki/Ajnabia",
+        img: "https://en.wikipedia.org/wiki/File:Life_reconstruction_of_Ajnabia_odysseus.png",
+    },
+    ["Akainacephalus johnsoni"]: {
+        year_max: 76.36,
+        year_min: 76.16,
+        // citing wikipedia: "The age of the layer is 76.26 ± 0.10 million years based on zircon dating"
+        eats: HERBIVORE,
+        lives: ["Utah"],
+        lives_precise: ["Kaiparowits Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Akainacephalus",
+        img: "https://en.wikipedia.org/wiki/File:Akainacephalus_johnsoni_Wikipedia_Juandertal.jpg",
+    },
+    ["Alamosaurus sanjuanensis"]: {
+        year_max: 70,
+        year_min: 66,
+        eats: HERBIVORE,
+        lives: ["New Mexico", "Utah", "Texas"],
+        // Some tooth might've been found in Wyoming; the other states in lives_extended were added to padd out the space
+        //  in-between the dinosaurs in .lives (as well as Wyoming).
+        lives_extended: ["Wyoming"],
+        // TODO: padd out dinosaur locations with lives_extended
+        wikipedia: "https://en.wikipedia.org/wiki/Alamosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Alamosaurus-sanjuanensis.jpg",
+    },
+    // Alamotyrannus: nomen nudem
+    // Alashansaurus: nomen nudem / synonym of Shaochilong
+    ["Alaskacephale gangloffi"]: {
+        year_max: 70,
+        year_min: 69,
+        eats: HERBIVORE,
+        lives: ["Alaska"],
+        lives_precise: ["Prince Creek Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alaskacephale",
+        img: "https://en.wikipedia.org/wiki/File:Alaskacephale_gangloffi_copia.jpg",
+    },
+    ["Albalophosaurus yamaguchiorum"]: {
+        year_max: 137.05, // Valanginian
+        year_min: 125.77, // Hauterivian
+        eats: HERBIVORE_OR_OMNIVORE, // bc it's a marginocephalian
+        lives: ["Japan"],
+        lives_precise: ["Kuwajima Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albalophosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Albalophosaurus_paqui_LMR.png",
+    },
+    ["Albertaceratops nesmoi"]: {
+        year_max: 77.5,
+        year_min: 77.5,
+        eats: HERBIVORE,
+        lives: ["Canada"],
+        lives_precise: ["Oldman Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertaceratops",
+        img: "https://en.wikipedia.org/wiki/File:Albertaceratops_BW.jpg",
+    },
+    ["Albertadromeus syntarsus"]: {
+        year_max: 77,
+        year_min: 76,
+        eats: HERBIVORE_OR_OMNIVORE, // bc it's a fast-running ornischian
+        lives: ["Canada"],
+        lives_precise: ["Oldman Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertadromeus",
+        img: "https://en.wikipedia.org/wiki/File:Albertadromeus_LM.png",
+    },
+    ["Albertavenator curriei"]: {
+        year_max: 71.5,
+        year_min: 71,
+        eats: CARNIVORE,
+        lives: ["Canada"],
+        lives_precise: ["Horseshoe Canyon Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertavenator",
+        img: "https://en.wikipedia.org/wiki/File:Albertavenator_LM.png",
+    },
+    ["Albertonykus borealis"]: {
+        year_max: 68.5,
+        year_min: 68.5,
+        eats: INSECTIVORE,
+        lives: ["Canada"],
+        lives_precise: ["Horseshoe Canyon Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertonykus",
+        img: "https://en.wikipedia.org/wiki/File:Albertonykus_borealis.jpg",
+    },
+    ["Albertosaurus sarcophagus"]: {
+        year_max: 71,
+        year_min: 68,
+        eats: CARNIVORE,
+        lives: ["Alberta"],
+        // wikipedia says it was limited to the "Canadian province of Alberta", but since that sounds oddly specific i'm putting
+        //  "Canada" into lives_extended
+        lives_extended: ["Canada"],
+        lives_precise: ["Horseshoe Canyon Formation", "Dry Island bone bed (Red Deer river)", "Tolman Bridge (Red Deer river)"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Albertosaurus_NT_small.jpg",
+    },
+    // TODO: maybe fuse cf. Albertosaurus sp. and Albertosaurus sp. into one Albertosaurus sp. ?
+    ["cf. Albertosaurus sp."]: {
+        year_max: 71,
+        year_min: 68,
+        eats: CARNIVORE,
+        lives: ["Mexico"],
+        lives_precise: ["Corral de Enmedio", "Packard Formations"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertosaurus",
+    },
+    ["Albertosaurus sp."]: {
+        year_max: 71, // Various unknown species
+        year_min: 68,
+        eats: CARNIVORE,
+        lives: [],
+        lives_extended: ["Montana", "New Mexico", "Wyoming", "Missouri"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albertosaurus",
+    },
+    ["Albinykus baatar"]: {
+        year_max: 85.8,
+        year_min: 84.9,
+        eats: INSECTIVORE,
+        lives: ["Mongolia"],
+        lives_precise: ["Javkhlant Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Albinykus",
+        img: "https://en.wikipedia.org/wiki/File:Albinykus_LM.png",
+    },
+    // Albisaurus: found to be a non-dinosaurian reptile (source: https://en.wikipedia.org/wiki/List_of_dinosaur_genera)
+    ["Alcovasaurus longispinus"]: {
+        // has been disputed in its validity, but found to be a valid genus/species in 2024 (https://doi.org/10.1093%2Fzoolinnean%2Fzlae074)
+        year_max: 150,
+        year_min: 150,
+        eats: HERBIVORE,
+        lives: ["Wyoming"],
+        lives_precise: ["Morrison Formation "],
+        wikipedia: "https://en.wikipedia.org/wiki/Alcovasaurus",
+        img: "https://en.wikipedia.org/wiki/File:Alcovasaurus_longispinus.png",
+    },
+    ["Alectrosaurus olseni"]: {
+        year_max: 96,
+        year_min: 85,
+        eats: CARNIVORE,
+        lives: ["Mongolia"],
+        lives_precise: ["Iren Dabasu Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alectrosaurus",
+        img: "https://commons.wikimedia.org/wiki/File:Alectrosaurus_flipped.png",
+        // ^ slightly different version of a size chart image used in the wikipedia article, which is why i consider it vetted by the article's authors
+    },
+    ["Aletopelta coombsi"]: {
+        year_max: 75.5,
+        year_min: 75.5,
+        eats: HERBIVORE,
+        lives: ["California"],
+        lives_precise: ["Point Loma Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Aletopelta",
+        img: "https://en.wikipedia.org/wiki/File:Aletopelta_NT.jpg",
+    },
+    ["Algoasaurus bauri"]: {
+        year_max: 140,
+        year_min: 125,
+        eats: HERBIVORE,
+        lives: ["South Africa"],
+        lives_precise: ["Upper Kirkwood Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Algoasaurus",
+    },
+    ["Alioramus remotus"]: {
+        year_max: 70,
+        year_min: 70,
+        eats: CARNIVORE,
+        lives: ["Mongolia"],
+        lives_precise: ["Nemegt Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alioramus",
+        img: "https://en.wikipedia.org/wiki/File:Alioramus_Life_Restoration.jpg",
+    },
+    ["Alioramus altai"]: {
+        year_max: 70,
+        year_min: 70,
+        eats: CARNIVORE,
+        lives: ["Mongolia"],
+        lives_precise: ["Nemegt Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alioramus",
+        img: "https://en.wikipedia.org/wiki/File:Alioramus_altai.jpg",
+    },
+    // Aliwalia – junior synonym of Eucnemesaurus (quoting https://en.wikipedia.org/wiki/List_of_dinosaur_genera here)
+    ["Allosaurus fragilis"]: {
+        year_max: 155,
+        year_min: 143.1,
+        eats: CARNIVORE,
+        lives: ["Colorado", "Montana", "New Mexico", "Oklahoma", "South Dakota", "Utah", "Wyoming"],
+        // TODO: write a lives_extended that contains the area spanned by these
+        lives_precise: ["Morrison Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Allosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Allosaurus_Revised.jpg",
+    },
+    ["Allosaurus jimmadseni"]: {
+        year_max: 155,
+        year_min: 143.1,
+        eats: CARNIVORE,
+        lives: ["Utah"],
+        lives_precise: ["Morrison Formation (Salt Wash Member)"],
+        wikipedia: "https://en.wikipedia.org/wiki/Allosaurus",
+        img: "https://commons.wikimedia.org/wiki/File:Allosaurus_UDL.png",
+        // ^ the wikimedia site text blob (provided by the uploader i think) claims that "Allosaurus jimmadseni"
+        //   was the most abundant large theropod of its time, which sounds wrong bc Allosaurus fragilis is found so much more
+        //   abundantly, making me question which animal the picture is supposed to be of; but alas, i'll take it
+    },
+    ["Allosaurus anax"]: {
+        year_max: 155,
+        year_min: 143.1,
+        eats: CARNIVORE,
+        // source for location: https://journals.library.ualberta.ca/vamp/index.php/VAMP/article/view/29404
+        lives: ["Oklahoma"],
+        lives_precise: ["Morrison Formation (Kenton Member)"],
+        wikipedia: "https://en.wikipedia.org/wiki/Allosaurus",
+        img: "https://en.wikipedia.org/wiki/File:Allosaurus_anax.png",
     },
     ["Allosaurus europaeus"]: { // might be Allosaurus fragilis
         year_max: 155,
         year_min: 143.1,
         eats: CARNIVORE,
         lives: ["Germany", "Portugal"],
-        lives_precise: ["Alcobaça Formation", "Lourinhã Formation", "Tönniesberg", "Kahlberg"],
+        livaes_precise: ["Alcobaça Formation", "Lourinhã Formation", "Tönniesberg", "Kahlberg"],
         wikipedia: "https://en.wikipedia.org/wiki/Allosaurus",
+    },
+    ["Almas ukhaa"]: {
+        year_max: 75,
+        year_min: 71,
+        eats: CARNIVORE, // assuming carnivore here bc troodonti; might've been insectivoric or piscivoric too ig?
+        lives: ["Mongolia"],
+        lives_precise: ["Djadochta Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Almas_ukhaa",
+        img: "https://en.wikipedia.org/wiki/File:Almas.png",
+    },
+    ["Alnashetri cerropoliciensis"]: {
+        year_max: 97,
+        year_min: 97,
+        eats: CARNIVORE,
+        lives: ["Argentina"],
+        lives_precise: ["La Buitrera, Río Negro Province"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alnashetri",
+        img: "https://commons.wikimedia.org/wiki/File:Alnashetri_LM.png",
+        // ^ from wikimedia, not wikipedia
     },
     ["Alocodon kuehnei"]: {
         year_max: 161.5, // Late Jurassic, Oxfordian according to Wikipedia
@@ -338,6 +665,30 @@ var _dinos = {
         lives_precise: ["Cabaços Formation", "Forest Marble", "Chipping Norton Formations"],
         wikipedia: "https://en.wikipedia.org/wiki/Alocodon",
     },
+    ["Alpkarakush kyrgyzicus"]: {
+        year_max: 165.3, // Callovian, according to wikipedia
+        year_min: 161.5,
+        eats: CARNIVORE,
+        lives: ["Kyrgyzstan"],
+        lives_precise: ["Balabansai Formation"],
+        wikipedia: "https://en.wikipedia.org/wiki/Alpkarakush",
+        img: "https://en.wikipedia.org/wiki/File:Alpkarakush_kyrgyzicus.png",
+    },
+    /*
+    ["______________"]: {
+        year_max: ___________,
+        year_min: ____________,
+        eats: __________________,
+        lives: [],
+        lives_precise: [],
+        wikipedia: "______________",
+        img: "___________",
+    },
+    */
+
+
+
+    // only European dinosaurs below this line
     ["Altispinax dunkeri"]: {
         year_max: 140,
         year_min: 133,
@@ -968,6 +1319,7 @@ var _dinos = {
         year_min: 204,
         eats: HERBIVORE,
         lives: ["Metropolitan France", "Germany", "Norway", "Greenland", "Switzerland"],
+        // TODO: add countries in-between to lives_extended
         wikipedia: "https://en.wikipedia.org/wiki/Gresslyosaurus",
     },
     ["Haestasaurus becklesii"]: {
