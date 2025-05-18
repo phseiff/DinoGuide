@@ -214,6 +214,12 @@
                     |
                 </span>
                 <span class="break_unit">
+                    <input type="checkbox" id="invert_ordering" onclick="toggle_invert_ordering();"
+                    title="Sort dinosaurs backwards">
+                    <label for="invert_ordering" title="Sort dinosaurs backwards">Inverse order</label>
+                    |
+                </span>
+                <span class="break_unit">
                     <input type="checkbox" id="split_dinos_by_certainty" onclick="toggle_split_dinosaurs_by_certainty();"
                     title="Display certain and uncertain search results separately">
                     <label for="split_dinos_by_certainty"
@@ -231,6 +237,7 @@
                     <input type="checkbox" id="show_wikipedia_images" onclick="toggle_show_wikipedia_images();"
                     title="Embed images of dinosaurs from wikimedia">
                     <label for="show_wikipedia_images" title="Embed images of dinosaurs from wikimedia">Wikimedia dino images</label>
+                    |
                 </span>
             </span>
             <div id="hide_display_settings_button_container">

@@ -25,6 +25,11 @@ function toggle_show_wikipedia_images() {
     reload_dinosaur_display_if_needed();
 }
 
+function toggle_invert_ordering() {
+    _data.dino_display_settings.invert_ordering = document.getElementById("invert_ordering").checked;
+    reload_dinosaur_display_if_needed();
+}
+
 function select_dino_ordering_method() {
     let ordering_method = document.getElementById("select_dino_ordering").value;
     _data.dino_display_settings.sort_by = ordering_method;
@@ -47,19 +52,18 @@ function dinosaur_sorting(a, b) {
         [HERBIVORE]: 9,
         [UNKNOWN_DIET]: 10,
     };
-    if (ordered_by === "name") {
-        return a - b;
-    } else if (ordered_by === "appearance") {
+    if (ordered_by === "appearance") {
         cmp = - (_dinos[a].year_max - _dinos[b].year_max);
     } else if (ordered_by === "extinction") {
         cmp = - (_dinos[a].year_min - _dinos[b].year_min);
     } else if (ordered_by === "diet") {
         cmp = diet_to_ranking[_dinos[a].eats] - diet_to_ranking[_dinos[b].eats];
-        console.log(cmp);
     }
-    if (cmp == 0) {
-        return a - b;
-    } else {
-        return cmp;
+    if (ordered_by == "name" || cmp == 0) {
+        cmp = (a > b) ? 1 : -1;
     }
+    if (_data.dino_display_settings.invert_ordering) {
+        cmp = -cmp;
+    }
+    return cmp;
 }
