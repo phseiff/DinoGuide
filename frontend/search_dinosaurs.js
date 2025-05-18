@@ -58,7 +58,10 @@ function render_dino_locations_list(dino_data) {
     }
     let s = location_names.join(", ");
     if (dino_data.lives_extended) {
-        s += ", and maybe "
+        if (dino_data.lives.length > 0) {
+            s += ", and "
+        }
+        s += "maybe "
         location_names = [];
         for (let location_name of (dino_data.lives_extended_written || dino_data.lives_extended)) {
             if (typeof(location_name) == "object") {
