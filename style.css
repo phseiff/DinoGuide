@@ -114,6 +114,7 @@ span.break_unit {
 img.dino_img {
     width: 100%;
     max-width: 300px;
+    background-color: white;
 }
 
 input[type="text"], select, input[type="number"] {
