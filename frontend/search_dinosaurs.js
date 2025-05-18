@@ -130,9 +130,11 @@ function generate_html_list_of_dinosaurs(dinosaur_names) {
             "'>" + diet_to_emoji[_dinos[name].eats].replaceAll(" ", "&nbsp;") + "</span>)</small><br>" +
             (
                 (_data.dino_display_settings.show_wikipedia_images && _dinos[name].img) ?
-                ("<img class='dino_img' src='" + 
+                ("<a rel='noopener noreferrer' target='_blank' href='" +
+                _dinos[name].img +
+                "'><img class='dino_img' src='" + 
                 encodeURI(_dinos[name].img.replace("/File:", "/Special:FilePath/")) +
-                "'><br>") :
+                "'></a><br>") :
                 ""
             ) +
             "<small>lived " + time_to_time_links(year_min, year_max) +
