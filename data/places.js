@@ -46,12 +46,26 @@ The following attributes are cleared and re-generated for every dino search base
 */
 
 var _places = {
+    // Australia:
+    ["Australia"]: {
+        id: 80500,
+    },
+    // Antarctica:
+    ["James Ross Island"]: {
+        id: 2968185,
+    },
     // Africa:
+    ["Angola"]: {
+        id: 195267,
+    },
     ["Egypt"]: {
         id: 1473947,
     },
     ["Lesotho"]: {
         id: 2093234,
+    },
+    ["Madagascar"]: {
+        id: 447325,
     },
     ["Morocco"]: {
         id: 3630439,
@@ -67,15 +81,13 @@ var _places = {
     },
 
     // Europe:
-    // Austria
     ["Austria"]: {
         id: 16239,
     },
-    // Belgium
     ["Belgium"]: {
         id: 52411,
     },
-    // Britain:
+    // Britain
     ["Great Britain"]: {
         id: 6038068,
     },
@@ -253,8 +265,14 @@ var _places = {
     ["China"]: {
         id: 270056, // This includes some islands outside of the mainland, which may be a problem for reasons already explained for (Ctrl+F) Ecuador.
     },
+    ["India"]: { // TODO: maybe add a version to _continents that doesn't have the geographically weirdly attached parts to it
+        id: 304716,
+    },
     ["Japan"]: {
         id: 382313,
+    },
+    ["Kazakhstan"]: {
+        id: 214665,
     },
     ["Kyrgyzstan"]: {
         id: 178009,
@@ -264,6 +282,9 @@ var _places = {
     },
     ["Russia"]: {
         id: 60189,
+    },
+    ["Uzbekistan"]: {
+        id: 196240,
     },
 
     // North America:
@@ -281,12 +302,36 @@ var _places = {
     ["USA"]: {
         id: 148838,
     },
+    ["Alabama"]: {
+        id: 161950,
+        is_in: "USA",
+    },
+    ["Arizona"]: {
+        id: 162018,
+        is_in: "USA",
+    },
+    ["Arkansas"]: {
+        id: 161646,
+        is_in: "USA",
+    },
     ["California"]: {
         id: 165475,
         is_in: "USA",
     },
     ["Colorado"]: {
         id: 161961,
+        is_in: "USA",
+    },
+    ["Connecticut"]: {
+        id: 165794,
+        is_in: "USA",
+    },
+    ["Georgia (USA)"]: {
+        id: 161957,
+        is_in: "USA",
+    },
+    ["South Carolina"]: {
+        id: 224040,
         is_in: "USA",
     },
     ["South Dakota"]: {
@@ -299,6 +344,14 @@ var _places = {
     },
     ["Montana"]: {
         id: 162115,
+        is_in: "USA",
+    },
+    ["North Carolina"]: {
+        id: 224045,
+        is_in: "USA",
+    },
+    ["North Dakota"]: {
+        id: 161653,
         is_in: "USA",
     },
     ["Oklahoma"]: {
