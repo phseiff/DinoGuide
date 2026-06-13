@@ -205,7 +205,7 @@ function finish_search_dinosaurs(success, is_reload) {
         // (This feature is implemented, but not yet widely-used in the data set. See output strings below for context.)
         if (_search_data.dinos_found_extended.size > 0) {
             innerHTML += (
-                "The following Dinosaur species were connected to your location by land masses and thus <i>may</i> have lived at your location, but we can't know that for sure:<br><br>" +
+                "The following Dinosaur species <i>may</i> have lived at your location, but we can't know that for sure:<br><br>" +
                 generate_html_list_of_dinosaurs(_search_data.dinos_found_extended)
             );
         }
